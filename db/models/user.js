@@ -40,7 +40,7 @@ module.exports = db => db.define('users', {
     }
   }
 })
-//uncomment these once we have files for review.js and order.js
+//  uncomment these once we have files for review.js and order.js
 // module.exports.associations = (User, {OAuth, Thing, Favorite, Review, Order}) => {
 //   User.hasOne(OAuth)
 //   User.belongsToMany(Thing, {as: 'favorites', through: Favorite})
