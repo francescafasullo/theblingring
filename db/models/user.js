@@ -4,8 +4,8 @@
 const bcrypt = require('bcryptjs')
     , {STRING, VIRTUAL, BOOLEAN} = require('sequelize')
 
-const Review = require('./review')
-const Order = require('./order')
+// const Review = require('./review')
+// const Order = require('./order')
 
 module.exports = db => db.define('users', {
   name: STRING,
@@ -40,13 +40,13 @@ module.exports = db => db.define('users', {
     }
   }
 })
-
-module.exports.associations = (User, {OAuth, Thing, Favorite, Review, Order}) => {
-  User.hasOne(OAuth)
-  User.belongsToMany(Thing, {as: 'favorites', through: Favorite})
-  User.hasMany(Review)
-  User.hasMany(Order)
-}
+//uncomment these once we have files for review.js and order.js
+// module.exports.associations = (User, {OAuth, Thing, Favorite, Review, Order}) => {
+//   User.hasOne(OAuth)
+//   User.belongsToMany(Thing, {as: 'favorites', through: Favorite})
+//   User.hasMany(Review)
+//   User.hasMany(Order)
+// }
 
 function setEmailAndPassword(user) {
   user.email = user.email && user.email.toLowerCase()
