@@ -1,7 +1,7 @@
 'use strict'
 
 const db = require('APP/db')
-    , {User, Product, Thing, Favorite, Review, Promise} = db
+    , {User, Product, Thing, Favorite, Review, Order, OrderProduct, Promise} = db
     , {mapValues} = require('lodash')
 
 function seedEverything() {
@@ -13,6 +13,8 @@ function seedEverything() {
 
   seeded.favorites = favorites(seeded)
   seeded.reviews = reviews(seeded)
+  seeded.orders = orders(seeded)
+  seeded.orderProducts = orderProducts(seeded)
 
   return Promise.props(seeded)
 }
@@ -122,6 +124,61 @@ const reviews = seed(Review,
   })
 )
 
+const orders = seed(Order,
+    ({users}) => ({
+      'lordOfTheRings': {
+        email: users.francesca.email,
+        shippingHouseNum: '1111 Woodland Dr.',
+        shippingZipCode: 77586,
+        shippingCity: 'El Lago',
+        shippingState: 'Texas',
+        billingHouseNum: '1111 Woodland Dr.',
+        billingZipCode: 77586,
+        billingCity: 'El Lago',
+        billingState: 'Texas',
+        user_id: users.francesca.id
+      },
+      'order2': {
+        email: users.rachel.email,
+        shippingHouseNum: '207 E 120th St., Apt PH',
+        shippingZipCode: 10035,
+        shippingCity: 'New York',
+        shippingState: 'New York',
+        billingHouseNum: '207 E 120th St., Apt PH',
+        billingZipCode: 10035,
+        billingCity: 'New York',
+        billingState: 'New York',
+        user_id: users.rachel.id
+      }
+    })
+)
+
+const orderProducts = seed(OrderProduct,
+    ({users, products, orders}) => ({
+      'lordOfTheRings1': {
+        productId: products.wanderingStarRing.id,
+        price: products.wanderingStarRing.price,
+        quantity: 1,
+        user_id: users.francesca.id,
+        order_id: orders.lordOfTheRings.id
+      },
+      'lordOfTheRings2': {
+        productId: products.snowQueenRing.id,
+        price: products.snowQueenRing.price,
+        quantity: 1,
+        user_id: users.francesca.id,
+        order_id: orders.lordOfTheRings.id
+      },
+      'order2item': {
+        productId: products.twoStepChainEarrings.id,
+        price: products.twoStepChainEarrings.price,
+        quantity: 1,
+        user_id: users.rachel.id,
+        order_id: orders.order2.id
+      }
+    })
+)
+
 const things = seed(Thing, {
   surfing: {name: 'surfing'},
   smiting: {name: 'smiting'},
@@ -229,4 +286,4 @@ function seed(Model, rows) {
   }
 }
 
-module.exports = Object.assign(seed, {users, products, reviews, things, favorites})
+module.exports = Object.assign(seed, {users, products, reviews, orders, orderProducts, things, favorites})
