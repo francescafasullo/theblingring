@@ -25,6 +25,22 @@ module.exports = db => db.define('orders', {
     type: STRING,
     allowNull: false
   },
+  billingHouseNum: {
+    type: STRING,
+    allowNull: false
+  },
+  billingZipCode: {
+    type: INTEGER,
+    allowNull: false,
+  },
+  billingCity: {
+    type: STRING,
+    allowNull: false
+  },
+  billingState: {
+    type: STRING,
+    allowNull: false
+  },
   timestamp: NOW,
   status: {
     type: ENUM,
