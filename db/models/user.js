@@ -2,7 +2,10 @@
 
 // bcrypt docs: https://www.npmjs.com/package/bcrypt
 const bcrypt = require('bcryptjs')
-    , {STRING, VIRTUAL} = require('sequelize')
+    , {STRING, VIRTUAL, BOOLEAN, INTEGER} = require('sequelize')
+
+const Review = require('./review')
+const Order = require('./order')
 
 module.exports = db => db.define('users', {
   name: STRING,
@@ -13,12 +16,35 @@ module.exports = db => db.define('users', {
       notEmpty: true,
     }
   },
+  isAdmin: {
+    type: BOOLEAN,
+    defaultValue: false
+  },
+  billingHouseNum: {
+    type: STRING,
+  },
+  billingZipCode: {
+    type: INTEGER,
+  },
+  billingCity: {
+    type: STRING
+  },
+  billingState: {
+    type: STRING
+  },
 
   // We support oauth, so users may or may not have passwords.
   password_digest: STRING, // This column stores the hashed password in the DB, via the beforeCreate/beforeUpdate hooks
   password: VIRTUAL // Note that this is a virtual, and not actually stored in DB
 }, {
   indexes: [{fields: ['email'], unique: true}],
+  // validate: {
+  //   zipValid() {
+  //     if (this.billingZipCode.length !== 5) {
+  //       throw new Error('Zip code must be valid')
+  //     }
+  //   }
+  // },
   hooks: {
     beforeCreate: setEmailAndPassword,
     beforeUpdate: setEmailAndPassword,
@@ -34,11 +60,11 @@ module.exports = db => db.define('users', {
   }
 })
 
-module.exports.associations = (User, {OAuth, Thing, Order, Review, Favorite}) => {
+module.exports.associations = (User, {OAuth, Thing, Favorite, Review, Order}) => {
   User.hasOne(OAuth)
   User.belongsToMany(Thing, {as: 'favorites', through: Favorite})
+  User.hasMany(Review)
   // User.hasMany(Order)
-  // User.hasMany(Review)
 }
 
 function setEmailAndPassword(user) {
