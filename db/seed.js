@@ -1,5 +1,7 @@
 'use strict'
 
+console.log('seed file hit')
+
 const db = require('APP/db')
     , {User, Product, Thing, Favorite, Review, Order, OrderProduct, Promise} = db
     , {mapValues} = require('lodash')
