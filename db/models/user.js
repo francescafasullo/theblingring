@@ -64,7 +64,7 @@ module.exports.associations = (User, {OAuth, Thing, Favorite, Review, Order}) =>
   User.hasOne(OAuth)
   User.belongsToMany(Thing, {as: 'favorites', through: Favorite})
   User.hasMany(Review)
-  User.hasMany(Order)
+  // User.hasMany(Order)
 }
 
 function setEmailAndPassword(user) {
