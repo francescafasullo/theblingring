@@ -1,13 +1,14 @@
 'use strict'
 
 const db = require('APP/db')
-    , {User, Thing, Favorite, Promise} = db
+    , {User, Product, Thing, Favorite, Promise} = db
     , {mapValues} = require('lodash')
 
 function seedEverything() {
   const seeded = {
     users: users(),
     things: things(),
+    products: products()
   }
 
   seeded.favorites = favorites(seeded)
@@ -16,16 +17,54 @@ function seedEverything() {
 }
 
 const users = seed(User, {
-  god: {
-    email: 'god@example.com',
-    name: 'So many names',
+  beyonce: {
+    email: 'queen@beyonce.com',
+    name: 'Beyonce Knowles',
     password: '1234',
+    isAdmin: false
   },
-  barack: {
-    name: 'Barack Obama',
-    email: 'barack@example.gov',
-    password: '1234'
+  michelleO: {
+    name: 'Michelle Obama',
+    email: 'michelle@obama.gov',
+    password: '1234',
+    isAdmin: false
   },
+  francesca: {
+    email: 'francesca@francesca.francesca',
+    name: 'Francesca',
+    password: 'password',
+    isAdmin: true
+  },
+  betty: {
+    email: 'betty@betty.betty',
+    name: 'Betty',
+    password: 'password',
+    isAdmin: true
+  },
+  rachel: {
+    email: 'rachel@rachel.rachel',
+    name: 'Rachel',
+    password: 'password',
+    isAdmin: true
+  },
+  aria: {
+    email: 'aria@theblingring.com',
+    name: 'Aria',
+    password: '1234',
+    isAdmin: false
+  }
+
+})
+
+const products = seed(Product, {
+  kittenMitten: {
+    title: 'Kitten Mitten',
+    description: 'Our newest hand bracelet is easy-breezy cool - gracefully accentuating the wrist. Delicate yet sturdy, the Kitten Mitten is built to last.',
+    photos: ['https://www.catbirdnyc.com/media/catalog/product/o/n/onanna-01.jpg', 'https://www.catbirdnyc.com/media/catalog/product/y/g/ygkm_on2.jpg', 'https://www.catbirdnyc.com/media/catalog/product/cache/1/image/1000x/602f0fa2c1f0d1ba5e241f914e856ff9/k/i/kittenmittenyg.jpg'],
+    price: 56.00,
+    quantity: 10
+  },
+
 })
 
 const things = seed(Thing, {
@@ -45,23 +84,23 @@ const favorites = seed(Favorite,
   ({users, things}) => ({
     // The easiest way to seed associations seems to be to just create rows
     // in the join table.
-    'obama loves surfing': {
-      user_id: users.barack.id,    // users.barack is an instance of the User model
+    'betty loves surfing': {
+      user_id: users.betty.id,    // users.betty is an instance of the User model
                                    // that we created in the user seed above.
                                    // The seed function wires the promises so that it'll
                                    // have been created already.
       thing_id: things.surfing.id  // Same thing for things.
     },
-    'god is into smiting': {
-      user_id: users.god.id,
+    'rachel is into smiting': {
+      user_id: users.rachel.id,
       thing_id: things.smiting.id
     },
-    'obama loves puppies': {
-      user_id: users.barack.id,
+    'betty loves puppies': {
+      user_id: users.betty.id,
       thing_id: things.puppies.id
     },
-    'god loves puppies': {
-      user_id: users.god.id,
+    'rachel loves puppies': {
+      user_id: users.rachel.id,
       thing_id: things.puppies.id
     },
   })
@@ -135,4 +174,4 @@ function seed(Model, rows) {
   }
 }
 
-module.exports = Object.assign(seed, {users, things, favorites})
+module.exports = Object.assign(seed, {users, products, things, favorites})
