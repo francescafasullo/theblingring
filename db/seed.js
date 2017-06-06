@@ -9,10 +9,10 @@ function seedEverything() {
     users: users(),
     things: things(),
     products: products(),
-    reviews: reviews()
   }
 
   seeded.favorites = favorites(seeded)
+  seeded.reviews = reviews(seeded)
 
   return Promise.props(seeded)
 }
@@ -96,25 +96,31 @@ const products = seed(Product, {
 
 })
 
-const reviews = seed(Review, {
-  kittenMittenReview: {
-    text: 'Omgggg love it so much im soooo trendy now all my friends are sooooooo jealous. Wearing this to Coachella!!!! Shipping was fast and the quality is good. Can\'t wait to show it off!',
-    date: new Date(),
-    rating: 5,
-    product_id: 1,
-    user_id: 1
-  },
-  twoStepChainEarringsReview: {
-    text: 'Love them. Just got them today, perfect for my daughters 18th birthday. Nice size, comfortable fit, and came in a beautiful box with a beautiful certificate.',
-    date: new Date(),
-    rating: 5
-  },
-  twoStepChainEarringsReview2: {
-    text: 'Disappointed and Ashamed. The screw on earrings is difficult the diamonds seem small for .5 carrots compared to other diamonds I have. Never ordering from here again!',
-    date: new Date(),
-    rating: 1
-  }
-})
+const reviews = seed(Review,
+  ({users, products}) => ({
+    'kittenMittenReview': {
+      text: 'Omgggg love it so much im soooo trendy now all my friends are sooooooo jealous. Wearing this to Coachella!!!! Shipping was fast and the quality is good. Can\'t wait to show it off!',
+      date: new Date(),
+      rating: 5,
+      product_id: products.kittenMitten.id,
+      user_id: users.rachel.id
+    },
+    'twoStepChainEarringsReview': {
+      text: 'Love them. Just got them today, perfect for my daughters 18th birthday. Nice size, comfortable fit, and came in a beautiful box with a beautiful certificate.',
+      date: new Date(),
+      rating: 5,
+      product_id: products.twoStepChainEarrings.id,
+      user_id: users.betty.id
+    },
+    'twoStepChainEarringsReview2': {
+      text: 'Disappointed and Ashamed. The screw on earrings is difficult the diamonds seem small for .5 carrots compared to other diamonds I have. Never ordering from here again!',
+      date: new Date(),
+      rating: 1,
+      product_id: products.twoStepChainEarrings.id,
+      user_id: users.aria.id
+    }
+  })
+)
 
 const things = seed(Thing, {
   surfing: {name: 'surfing'},
