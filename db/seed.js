@@ -1,14 +1,15 @@
 'use strict'
 
 const db = require('APP/db')
-    , {User, Product, Thing, Favorite, Promise} = db
+    , {User, Product, Thing, Favorite, Review, Promise} = db
     , {mapValues} = require('lodash')
 
 function seedEverything() {
   const seeded = {
     users: users(),
     things: things(),
-    products: products()
+    products: products(),
+    reviews: reviews()
   }
 
   seeded.favorites = favorites(seeded)
@@ -61,10 +62,58 @@ const products = seed(Product, {
     title: 'Kitten Mitten',
     description: 'Our newest hand bracelet is easy-breezy cool - gracefully accentuating the wrist. Delicate yet sturdy, the Kitten Mitten is built to last.',
     photos: ['https://www.catbirdnyc.com/media/catalog/product/o/n/onanna-01.jpg', 'https://www.catbirdnyc.com/media/catalog/product/y/g/ygkm_on2.jpg', 'https://www.catbirdnyc.com/media/catalog/product/cache/1/image/1000x/602f0fa2c1f0d1ba5e241f914e856ff9/k/i/kittenmittenyg.jpg'],
-    price: 56.00,
+    price: 25.00,
     quantity: 10
   },
+  snowQueenRing: {
+    title: 'Snow Queen Ring',
+    description: 'The Snow Queen will melt your heart into a shining puddle of diamond-y sparkle. We\'ve been dreaming of this ring for years. A Snow Queen\'s thimble\'s worth of rose cut and brilliant cut diamonds, sit in a glorious, luminescent curve. Made to hug the lines of a multitude of solitaires and other style engagement rings.',
+    photos: ['https://s-media-cache-ak0.pinimg.com/originals/01/a5/bc/01a5bc44325679a8fcd91d7e09108dda.jpg', 'https://s-media-cache-ak0.pinimg.com/originals/ee/f4/19/eef419e0625faf40f8b2b73d4bbaa45b.jpg'],
+    price: 150.00,
+    quantity: 3
+  },
+  earNutEarrings: {
+    title: 'Ear Nut Earring, Gold',
+    description: 'These smart and simple studs take inspiration from the back of a nose ring, eliminating the need for a backing. Perfect for every day wear, also works perfectly for the often forgotten second and third holes.',
+    photos: ['https://www.catbirdnyc.com/media/catalog/product/cache/1/image/1000x/602f0fa2c1f0d1ba5e241f914e856ff9/n/u/nut7.jpg'],
+    price: 20.00,
+    quantity: 50
+  },
+  wanderingStarRing: {
+    title: 'Wandering Star Ring, Opal',
+    description: 'A ring of epic beauty, plucked straight from the night sky. 14k yellow gold, 5mm Australian opal, 10 brilliant diamonds on a 1.2mm solid gold band, total carat wieght is approx. 0.6 ct, handmade in Montreal.',
+    photos: ['https://www.catbirdnyc.com/media/catalog/product/cache/1/image/1000x/602f0fa2c1f0d1ba5e241f914e856ff9/w/a/wanderingstar4.jpg', 'https://s-media-cache-ak0.pinimg.com/236x/de/40/33/de403318258ec677bb6a8c38b31b1608.jpg'],
+    price: 120.00,
+    quantity: 25
+  },
+  twoStepChainEarrings: {
+    title: 'Two Step Chain Earrings, Opal',
+    description: 'Smallest moody opals to frame your face, and swing ever-so-gently from your lobes. Solid 14k yellow gold, 2mm Australian opals, total length of earring: 1/2 inch, made in Brooklyn, sold as a pair.',
+    photos: ['https://www.catbirdnyc.com/media/catalog/product/cache/1/image/1000x/602f0fa2c1f0d1ba5e241f914e856ff9/w/w/wwake_opaltwostep2.jpg', 'https://www.catbirdnyc.com/media/catalog/product/cache/1/image/1000x/602f0fa2c1f0d1ba5e241f914e856ff9/w/w/wwake_opaltwostep6.jpg'],
+    price: 50.00,
+    quantity: 34
+  }
 
+})
+
+const reviews = seed(Review, {
+  kittenMittenReview: {
+    text: 'Omgggg love it so much im soooo trendy now all my friends are sooooooo jealous. Wearing this to Coachella!!!! Shipping was fast and the quality is good. Can\'t wait to show it off!',
+    date: new Date(),
+    rating: 5,
+    product_id: 1,
+    user_id: 1
+  },
+  twoStepChainEarringsReview: {
+    text: 'Love them. Just got them today, perfect for my daughters 18th birthday. Nice size, comfortable fit, and came in a beautiful box with a beautiful certificate.',
+    date: new Date(),
+    rating: 5
+  },
+  twoStepChainEarringsReview2: {
+    text: 'Disappointed and Ashamed. The screw on earrings is difficult the diamonds seem small for .5 carrots compared to other diamonds I have. Never ordering from here again!',
+    date: new Date(),
+    rating: 1
+  }
 })
 
 const things = seed(Thing, {
@@ -174,4 +223,4 @@ function seed(Model, rows) {
   }
 }
 
-module.exports = Object.assign(seed, {users, products, things, favorites})
+module.exports = Object.assign(seed, {users, products, reviews, things, favorites})
