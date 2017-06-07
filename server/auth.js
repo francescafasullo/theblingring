@@ -129,6 +129,7 @@ auth.post('/login/local', passport.authenticate('local', {successRedirect: '/'})
 //   User.create.....
 //   .then(user => req.logIn(user))
 // })
+// also consider using user-post --> logic for signing in and who can set admin privileges -- KHAM
 
 // GET requests for OAuth login:
 // Register this route as a callback URL with OAuth provider
