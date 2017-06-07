@@ -126,6 +126,7 @@ auth.get('/whoami', (req, res) => res.send(req.user))
 auth.post('/login/local', passport.authenticate('local', {successRedirect: '/'}))
 
 auth.post('/signup/local', (req, res, next) => {
+  console.log('what is in here', req.params)
   User.findOne({where: {email: req.params.email}})
   .then(user => {
     if (user) {
