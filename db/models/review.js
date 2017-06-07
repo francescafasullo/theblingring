@@ -2,7 +2,7 @@
 
 const Sequelize = require('sequelize')
 
-module.exports = db => db.define('reviews', {
+module.exports = db => db.define('reviews', { // usually we like singular -- KHAM
   text: {
     type: Sequelize.TEXT,
     allowNull: false,
@@ -10,7 +10,7 @@ module.exports = db => db.define('reviews', {
       len: [140]
     }
   },
-  date: {
+  date: { // defaultValue: NOW
     type: Sequelize.DATE,
     allowNull: false,
   },

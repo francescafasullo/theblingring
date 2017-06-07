@@ -20,7 +20,7 @@ module.exports = db => db.define('users', {
     type: BOOLEAN,
     defaultValue: false
   },
-  billingHouseNum: {
+  billingHouseNum: { // have a table for addresses for use here, billing address, shipping address in orders. user.hasOne; order.belongsTo(address, {as: shipping}); address.hasMany(order) -- KHAM
     type: STRING,
   },
   billingZipCode: {
@@ -64,7 +64,7 @@ module.exports.associations = (User, {OAuth, Review, Order}) => {
   User.hasOne(OAuth)
   User.hasMany(Review)
   User.hasMany(Order)
-  // User.belongsToMany(Thing, {as: 'favorites', through: Favorite})
+  // User.belongsToMany(Thing, {as: 'favorites', through: Favorite}) // Why am I here? -- KH
 }
 
 function setEmailAndPassword(user) {

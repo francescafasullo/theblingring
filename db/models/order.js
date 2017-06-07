@@ -1,6 +1,8 @@
 'use strict'
 const {STRING, ARRAY, INTEGER, NOW, ENUM} = require('sequelize')
 
+// make a cart model -- KH
+
 module.exports = db => db.define('orders', {
   email: {
     type: STRING,
@@ -13,7 +15,7 @@ module.exports = db => db.define('orders', {
     type: STRING,
     allowNull: false
   },
-  shippingZipCode: {
+  shippingZipCode: { // length -- KH
     type: INTEGER,
     allowNull: false,
   },
@@ -21,7 +23,7 @@ module.exports = db => db.define('orders', {
     type: STRING,
     allowNull: false
   },
-  shippingState: {
+  shippingState: { // enum; length -- KH
     type: STRING,
     allowNull: false
   },
@@ -41,13 +43,14 @@ module.exports = db => db.define('orders', {
     type: STRING,
     allowNull: false
   },
-  // timestamp: NOW,
+  // timestamp: NOW, // maybe date type with default value of now
   status: {
     type: ENUM,
     values: ['created', 'processing', 'cancelled', 'completed'],
     defaultValue: 'created'
   }
 })
+// commented out code in master :( -- KHAM
 // {
 //   validate: {
 //     itemsInCart() {
@@ -56,7 +59,7 @@ module.exports = db => db.define('orders', {
 //       }
 //     },
 //     zipValid() {
-//       if (this.shippingZipCode.length !== 5) {
+//       if (this.shippingZipCode.length !== 5) { // validation on type
 //         throw new Error('Zip code must be valid')
 //       }
 //     }
@@ -64,5 +67,6 @@ module.exports = db => db.define('orders', {
 // }
 
 module.exports.associations = (Order, {User, Product}) => {
-  Order.belongsTo(User)
+  Order.belongsTo(User) // sequelize benefits -- ability to include (eager loading) -- plus methods order.setUser -- KHAM
+  // Order.belongsToMany(Products ----- ) -- KHAM
 }

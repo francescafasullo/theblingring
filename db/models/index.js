@@ -20,7 +20,7 @@ const app = require('APP')
       Review: require('./review'),
 
       Order: require('./order'),
-      OrderProduct: require('./orderproduct')
+      OrderProduct: require('./orderproduct') // duplicate -- KHAM
 
       // ---------- Add new models here ----------
     }

@@ -2,7 +2,7 @@
 
 const Sequelize = require('sequelize')
 
-module.exports = db => db.define('products', {
+module.exports = db => db.define('products', { // singular -- KHAM
   title: {
     type: Sequelize.STRING,
     allowNull: false
@@ -26,6 +26,6 @@ module.exports = db => db.define('products', {
 })
 
 // module.exports.associations = (Product, {Review, Category}) => {
-//   Product.hasMany(Review)
-//   Product.belongsToMany(Category)
+//   Product.hasMany(Review) // we should check this error out, make a help ticket -- KHAM
+//   Product.belongsToMany(Category) // Make category model -- KHAM
 // }

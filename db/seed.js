@@ -69,7 +69,7 @@ const products = seed(Product, {
   },
   snowQueenRing: {
     title: 'Snow Queen Ring',
-    description: 'The Snow Queen will melt your heart into a shining puddle of diamond-y sparkle. We\'ve been dreaming of this ring for years. A Snow Queen\'s thimble\'s worth of rose cut and brilliant cut diamonds, sit in a glorious, luminescent curve. Made to hug the lines of a multitude of solitaires and other style engagement rings.',
+    description: 'The Snow Queen will melt your heart into a shining puddle of diamond-y sparkle. We\'ve been dreaming of this ring for years. A Snow Queen\'s thimble\'s worth of rose cut and brilliant cut diamonds, sit in a glorious, luminescent curve. Made to hug the lines of a multitude of solitaires and other style engagement rings.', // consider using ticks so you don't have to escape -- KHAM
     photos: ['https://s-media-cache-ak0.pinimg.com/originals/01/a5/bc/01a5bc44325679a8fcd91d7e09108dda.jpg', 'https://s-media-cache-ak0.pinimg.com/originals/ee/f4/19/eef419e0625faf40f8b2b73d4bbaa45b.jpg'],
     price: 150.00,
     quantity: 3
@@ -102,7 +102,7 @@ const reviews = seed(Review,
   ({users, products}) => ({
     'kittenMittenReview': {
       text: 'Omgggg love it so much im soooo trendy now all my friends are sooooooo jealous. Wearing this to Coachella!!!! Shipping was fast and the quality is good. Can\'t wait to show it off!',
-      date: new Date(),
+      date: new Date(), // I would assume there are default values in model definition -- KHAM
       rating: 5,
       product_id: products.kittenMitten.id,
       user_id: users.rachel.id
