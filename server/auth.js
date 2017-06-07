@@ -125,7 +125,7 @@ auth.get('/whoami', (req, res) => res.send(req.user))
 // POST requests for local login:
 auth.post('/login/local', passport.authenticate('local', {successRedirect: '/'}))
 
-auth.post('/signup/local', (req, res) => {
+auth.post('/signup/local', (req, res, next) => {
   User.findOne({where: {email: req.params.email}})
   .then(user => {
     if (user) {
@@ -135,7 +135,7 @@ auth.post('/signup/local', (req, res) => {
     }
   })
   .then(user => res.user)
-  .catch(done)
+  .catch(next)
 })
 
 // GET requests for OAuth login:

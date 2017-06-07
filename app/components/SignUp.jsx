@@ -1,26 +1,12 @@
 import React, { Component } from 'react'
 
-export default class SignUp extends Component {
-  // componentDidMount() {
-  //   this.nextJoke()
-  // }
+export class SignUp extends Component {
 
-  // nextJoke = () =>
-  //   this.setState({
-  //     joke: randomJoke(),
-  //     answered: false,
-  //   })
-
-  // answer = () =>
-  //   this.setState({answered: true})
-
-  render() {
-    // if (!this.state) { return null }
-
-    // const {joke, answered} = this.state
+  render(signup) {
     return (
       <form onSubmit={evt => {
-
+        evt.preventDefault()
+        signup(evt.target.email.value, evt.target.password.value)
       }}>
         <input name="email" />
         <input name="password" type="password" />
@@ -30,10 +16,10 @@ export default class SignUp extends Component {
   }
 }
 
-// import {login} from 'APP/app/reducers/auth'
-// import {connect} from 'react-redux'
+import {signup} from 'APP/app/reducers/auth'
+import {connect} from 'react-redux'
 
-// export default connect(
-//   state => ({}),
-//   {signup},
-// )(SignUp)
+export default connect(
+  state => ({}),
+  {signup},
+)(SignUp)
