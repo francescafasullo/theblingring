@@ -4,7 +4,7 @@ import {connect} from 'react-redux'
 import {getOneProduct} from '../reducers/products'
 import ProductDetails from '../components/ProductDetails'
 
-const mapStateToProps = state => state
+const mapStateToProps = state => state // eventually probably just selectedProduct -- KHAM
 
 const mapDispatchToProps = dispatch => ({
   loadSingleProduct: productId => dispatch(getOneProduct(productId))

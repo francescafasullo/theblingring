@@ -125,6 +125,11 @@ auth.get('/whoami', (req, res) => res.send(req.user))
 // POST requests for local login:
 auth.post('/login/local', passport.authenticate('local', {successRedirect: '/'}))
 
+// auth.post('/signup/local', (req, res, next) => { http://passportjs.org/docs -- KHAM
+//   User.create.....
+//   .then(user => req.logIn(user))
+// })
+
 // GET requests for OAuth login:
 // Register this route as a callback URL with OAuth provider
 auth.get('/login/:strategy', (req, res, next) =>

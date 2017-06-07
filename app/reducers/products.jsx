@@ -2,7 +2,7 @@ import axios from 'axios'
 
 const initialState = {
   allProducts: [],
-  product: {}
+  product: {} // selectedProduct. self-documenting variables -- KHAM
 }
 
 /* ---- actions ---- */
@@ -19,8 +19,8 @@ export const getOneProduct = (productId) =>
   dispatch => {
     axios.get(`/api/products/${productId}`)
     .then(res => res.data)
-    .then(res => dispatch(getSingleProduct(res)))
-    .catch(err => console.error(err))
+    .then(res => dispatch(getSingleProduct(res))) // should be product not res -- KHAM
+    .catch(err => console.error(err)) // handle these in the UI so the user knows something went wrong. Look into growls if you want. Or just conditional if error show message straight in HTML -- KHAM
   }
 
 /* ---- reducer ---- */
