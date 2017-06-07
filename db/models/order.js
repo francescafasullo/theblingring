@@ -41,7 +41,7 @@ module.exports = db => db.define('orders', {
     type: STRING,
     allowNull: false
   },
-  timestamp: NOW,
+  // timestamp: NOW,
   status: {
     type: ENUM,
     values: ['created', 'processing', 'cancelled', 'completed'],
