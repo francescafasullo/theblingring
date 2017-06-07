@@ -1,5 +1,5 @@
 'use strict'
-const {STRING, ARRAY, INTEGER, NOW, ENUM} = require('sequelize')
+const {STRING, ENUM} = require('sequelize')
 
 module.exports = db => db.define('order', {
   email: {
