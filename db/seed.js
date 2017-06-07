@@ -3,17 +3,15 @@
 console.log('seed file hit')
 
 const db = require('APP/db')
-    , {User, Product, Thing, Favorite, Review, Order, OrderProduct, Promise} = db
+    , {User, Product, Review, Order, OrderProduct, Promise} = db
     , {mapValues} = require('lodash')
 
 function seedEverything() {
   const seeded = {
     users: users(),
-    things: things(),
     products: products(),
   }
 
-  seeded.favorites = favorites(seeded)
   seeded.reviews = reviews(seeded)
   seeded.orders = orders(seeded)
   seeded.orderProducts = orderProducts(seeded)
@@ -181,45 +179,6 @@ const orderProducts = seed(OrderProduct,
     })
 )
 
-const things = seed(Thing, {
-  surfing: {name: 'surfing'},
-  smiting: {name: 'smiting'},
-  puppies: {name: 'puppies'},
-})
-
-const favorites = seed(Favorite,
-  // We're specifying a function here, rather than just a rows object.
-  // Using a function lets us receive the previously-seeded rows (the seed
-  // function does this wiring for us).
-  //
-  // This lets us reference previously-created rows in order to create the join
-  // rows. We can reference them by the names we used above (which is why we used
-  // Objects above, rather than just arrays).
-  ({users, things}) => ({
-    // The easiest way to seed associations seems to be to just create rows
-    // in the join table.
-    'betty loves surfing': {
-      user_id: users.betty.id,    // users.betty is an instance of the User model
-                                   // that we created in the user seed above.
-                                   // The seed function wires the promises so that it'll
-                                   // have been created already.
-      thing_id: things.surfing.id  // Same thing for things.
-    },
-    'rachel is into smiting': {
-      user_id: users.rachel.id,
-      thing_id: things.smiting.id
-    },
-    'betty loves puppies': {
-      user_id: users.betty.id,
-      thing_id: things.puppies.id
-    },
-    'rachel loves puppies': {
-      user_id: users.rachel.id,
-      thing_id: things.puppies.id
-    },
-  })
-)
-
 if (module === require.main) {
   db.didSync
     .then(() => db.sync({force: true}))
@@ -288,4 +247,4 @@ function seed(Model, rows) {
   }
 }
 
-module.exports = Object.assign(seed, {users, products, reviews, orders, orderProducts, things, favorites})
+module.exports = Object.assign(seed, {users, products, reviews, orders, orderProducts})
