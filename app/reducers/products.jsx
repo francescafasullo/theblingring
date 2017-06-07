@@ -2,7 +2,7 @@ import axios from 'axios'
 
 const initialState = {
   allProducts: [],
-  product: {}
+  selectedProduct: {}
 }
 
 /* ---- actions ---- */
@@ -11,7 +11,7 @@ const GET_SINGLE_PRODUCT = 'GET_SINGLE_PRODUCT'
 /* ---- actions creators ---- */
 const getSingleProduct = (productById) => ({
   type: GET_SINGLE_PRODUCT,
-  product: productById
+  selectedProduct: productById
 })
 
 /* ---- dispatchers ---- */
@@ -19,7 +19,7 @@ export const getOneProduct = (productId) =>
   dispatch => {
     axios.get(`/api/products/${productId}`)
     .then(res => res.data)
-    .then(res => dispatch(getSingleProduct(res)))
+    .then(product => dispatch(getSingleProduct(product)))
     .catch(err => console.error(err))
   }
 
@@ -29,7 +29,7 @@ const reducer = (state = initialState, action) => {
 
   switch (action.type) {
   case GET_SINGLE_PRODUCT:
-    newState.product = action.product
+    newState.selectedProduct = action.selectedProduct
     break
 
   default:

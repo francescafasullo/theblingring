@@ -10,15 +10,15 @@ module.exports = require('express').Router()
         .then(products => res.json(products))
         .catch(next))
 
-  .get('/:productid', (req, res, next) => {
+  .get('/:productId', (req, res, next) => {
     const productId = req.params.productid
     Product.findById(productId)
     .then(product => res.json(product))
     .catch(next)
   })
 
-  .get('/:productid/reviews', (req, res, next) => {
-    const productId = req.params.productid
+  .get('/:productId/reviews', (req, res, next) => {
+    const productId = req.params.productId
     Review.findAll({
       where: {
         product_id: productId

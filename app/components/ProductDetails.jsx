@@ -2,17 +2,18 @@ import React, {Component} from 'react'
 
 export default class ProductDetails extends Component {
   componentDidMount() {
-    // this.setState({singleProduct: this.props.loadSingleProduct(1)})
+    // !!! loading single product hard-coded! UPDATE
     this.props.loadSingleProduct(1)
   }
 
   render() {
+    const { photos, title, description, price } = this.props.products.selectedProduct
     return (
       <div>
-        <img src={this.props.products.product.photos}/>
-        <h1>{this.props.products.product.title}</h1>
-        <p>{this.props.products.product.description}</p>
-        <p>${this.props.products.product.price}</p>
+        <img src={photos}/>
+        <h1>{title}</h1>
+        <p>{description}</p>
+        <p>${price}</p>
       </div>
     )
   }
