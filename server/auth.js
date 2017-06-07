@@ -125,6 +125,19 @@ auth.get('/whoami', (req, res) => res.send(req.user))
 // POST requests for local login:
 auth.post('/login/local', passport.authenticate('local', {successRedirect: '/'}))
 
+auth.post('/signup/local', (req, res) => {
+  User.findOne({where: {email: req.params.email}})
+  .then(user => {
+    if (user) {
+      return {message: 'User already exists'}
+    } else {
+      return User.create({email: req.params.email, password: req.params.password})
+    }
+  })
+  .then(user => res.user)
+  .catch(done)
+})
+
 // GET requests for OAuth login:
 // Register this route as a callback URL with OAuth provider
 auth.get('/login/:strategy', (req, res, next) =>
