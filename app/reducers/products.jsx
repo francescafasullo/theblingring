@@ -24,7 +24,7 @@ export const getOneProduct = (productId) =>
   }
 
 /* ---- reducer ---- */
-const reducer = (state = {}, action) => {
+const reducer = (state = initialState, action) => {
   const newState = Object.assign({}, state)
 
   switch (action.type) {
