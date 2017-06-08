@@ -11,6 +11,7 @@ import WhoAmI from './components/WhoAmI'
 import NotFound from './components/NotFound'
 import SignUp from './components/SignUp'
 import ProductDetailsContainer from './containers/ProductDetailsContainer'
+import Navigation from './components/Navigation'
 
 import {getOneProduct} from './reducers/products.jsx'
 
@@ -26,6 +27,7 @@ const ExampleApp = connect(
     <div>
       <nav>
         {user ? <WhoAmI/> : <Login/>}
+        <Navigation />
       </nav>
       {children}
     </div>
