@@ -1,5 +1,5 @@
 'use strict'
-const {STRING, ARRAY, INTEGER, NOW, ENUM} = require('sequelize')
+const {STRING, ENUM} = require('sequelize')
 
 module.exports = db => db.define('order', {
   email: {
@@ -18,5 +18,5 @@ module.exports = db => db.define('order', {
 
 module.exports.associations = (Order, {User, Product}) => {
   Order.belongsTo(User)
-  Order.belongsToMany(Product, {through: ''})
+  Order.belongsToMany(Product, {through: 'Orderproduct'})
 }
