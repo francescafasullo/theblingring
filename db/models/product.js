@@ -2,7 +2,7 @@
 
 const Sequelize = require('sequelize')
 
-module.exports = db => db.define('products', {
+module.exports = db => db.define('product', {
   title: {
     type: Sequelize.STRING,
     allowNull: false
@@ -16,7 +16,7 @@ module.exports = db => db.define('products', {
     defaultValue: ['http://via.placeholder.com/200x200']
   },
   price: {
-    type: Sequelize.FLOAT,
+    type: Sequelize.DECIMAL,
     allowNull: false
   },
   quantity: {
@@ -25,8 +25,10 @@ module.exports = db => db.define('products', {
   }
 })
 
-module.exports.associations = (Product, {Review, Category, Cart}) => {
+
+module.exports.associations = (Product, {Review, Category, Order, OrderProduct, Cart}) => {
   Product.hasMany(Review)
-  Product.belongsTo(Category)
+  // Product.belongsTo(Category)
+  Product.belongsToMany(Order, {through: OrderProduct})
   Product.belongsToMany(Cart)
 }
