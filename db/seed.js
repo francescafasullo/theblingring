@@ -3,7 +3,7 @@
 console.log('seed file hit')
 
 const db = require('APP/db')
-    , {User, Product, Review, Order, OrderProduct, Address, Category, Cart, Promise} = db
+    , {User, Product, Review, Order, OrderProduct, Address, Category, Cart, CartProduct, Promise} = db
     , {mapValues} = require('lodash')
 
 function seedEverything() {
@@ -18,6 +18,7 @@ function seedEverything() {
   seeded.addresses = addresses(seeded)
   seeded.orderProducts = orderProducts(seeded)
   seeded.carts = carts(seeded)
+  seeded.cartProducts = cartProducts(seeded)
 
   return Promise.props(seeded)
 }
@@ -194,27 +195,50 @@ const orders = seed(Order,
     ({users}) => ({
       'lordOfTheRings': {
         email: users.francesca.email,
-        shippingHouseNum: '1111 Woodland Dr.',
-        shippingZipCode: 77586,
-        shippingCity: 'El Lago',
-        shippingState: 'Texas',
-        billingHouseNum: '1111 Woodland Dr.',
-        billingZipCode: 77586,
-        billingCity: 'El Lago',
-        billingState: 'Texas',
         user_id: users.francesca.id
       },
       'order2': {
         email: users.rachel.email,
-        shippingHouseNum: '207 E 120th St., Apt PH',
-        shippingZipCode: 10035,
-        shippingCity: 'New York',
-        shippingState: 'New York',
-        billingHouseNum: '207 E 120th St., Apt PH',
-        billingZipCode: 10035,
-        billingCity: 'New York',
-        billingState: 'New York',
         user_id: users.rachel.id
+      }
+    })
+)
+
+const carts = seed(Cart,
+   ({ users }) => ({
+     'cart1': {
+       user_id: users.betty.id
+     },
+     'cart2': {
+       user_id: users.aria.id
+     },
+     'cart3': {
+       user_id: users.rachel.id
+     }
+   })
+)
+
+const cartProducts = seed(CartProduct,
+    ({ carts, products }) => ({
+      'ringInCart1': {
+        quantity: 1,
+        product_id: products.snowQueenRing.id,
+        cart_id: carts.cart1.id
+      },
+      'earringInCart1': {
+        quantity: 2,
+        product_id: products.twoStepChainEarrings.id,
+        cart_id: carts.cart1.id
+      },
+      'stuffInCart2': {
+        quantity: 1,
+        product_id: products.kittenMitten.id,
+        cart_id: carts.cart2.id
+      },
+      'stuffInCart3': {
+        quantity: 1,
+        product_id: products.earNutEarrings.id,
+        cart_id: carts.cart3.id
       }
     })
 )

@@ -21,7 +21,8 @@ const app = require('APP')
       OrderProduct: require('./orderproduct'),
       Cart: require('./cart'),
       Category: require('./category'),
-      Address: require('./address')
+      Address: require('./address'),
+      CartProduct: require('./cartproduct')
 
       // ---------- Add new models here ----------
     }
