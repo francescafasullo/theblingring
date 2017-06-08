@@ -1,7 +1,7 @@
 'use strict'
-const {STRING, ARRAY, INTEGER, NOW, ENUM} = require('sequelize')
+const {STRING, ENUM} = require('sequelize')
 
-module.exports = db => db.define('orders', {
+module.exports = db => db.define('order', {
   email: {
     type: STRING,
     validate: {
@@ -9,60 +9,15 @@ module.exports = db => db.define('orders', {
       notEmpty: true
     }
   },
-  shippingHouseNum: {
-    type: STRING,
-    allowNull: false
-  },
-  shippingZipCode: {
-    type: INTEGER,
-    allowNull: false,
-  },
-  shippingCity: {
-    type: STRING,
-    allowNull: false
-  },
-  shippingState: {
-    type: STRING,
-    allowNull: false
-  },
-  billingHouseNum: {
-    type: STRING,
-    allowNull: false
-  },
-  billingZipCode: {
-    type: INTEGER,
-    allowNull: false,
-  },
-  billingCity: {
-    type: STRING,
-    allowNull: false
-  },
-  billingState: {
-    type: STRING,
-    allowNull: false
-  },
-  // timestamp: NOW,
   status: {
     type: ENUM,
     values: ['created', 'processing', 'cancelled', 'completed'],
     defaultValue: 'created'
   }
 })
-// {
-//   validate: {
-//     itemsInCart() {
-//       if (!this.itemIds.length) {
-//         throw new Error('Order must contain at least one item')
-//       }
-//     },
-//     zipValid() {
-//       if (this.shippingZipCode.length !== 5) {
-//         throw new Error('Zip code must be valid')
-//       }
-//     }
-//   }
-// }
 
-module.exports.associations = (Order, {User, Product}) => {
+module.exports.associations = (Order, {User, Product, Address}) => {
   Order.belongsTo(User)
+  Order.belongsToMany(Product, {through: 'Orderproduct'})
+  Order.hasMany(Address)
 }
