@@ -3,19 +3,21 @@
 console.log('seed file hit')
 
 const db = require('APP/db')
-    , {User, Product, Review, Order, OrderProduct, Address, Promise} = db
+    , {User, Product, Review, Order, OrderProduct, Address, Category, Cart, Promise} = db
     , {mapValues} = require('lodash')
 
 function seedEverything() {
   const seeded = {
     users: users(),
-    products: products()
+    categories: categories()
   }
 
+  seeded.products = products(seeded)
   seeded.reviews = reviews(seeded)
   seeded.orders = orders(seeded)
-  seeded.orderProducts = orderProducts(seeded)
   seeded.addresses = addresses(seeded)
+  seeded.orderProducts = orderProducts(seeded)
+  seeded.carts = carts(seeded)
 
   return Promise.props(seeded)
 }
@@ -60,75 +62,106 @@ const users = seed(User, {
 
 })
 
-const addresses = seed(Address, {
-  elLago: {
+const addresses = seed(Address,
+({users, orders}) => ({
+  'elLago': {
     street: '1111 Woodland Dr.',
     city: 'El Lago',
     state: 'TX',
-    zip: 77586
+    zip: 77586,
+    user_id: users.francesca.id,
+    order_id: orders.lordOfTheRings.id
   },
-  harlem: {
+  'harlem': {
     street: '207 E 120th St., PH',
     city: 'New York',
     state: 'NY',
-    zip: 10035
+    zip: 10035,
+    user_id: users.beyonce.id,
   },
-  kal: {
+  'kal': {
     street: '420 Riverside Dr., 5E',
     city: 'New York',
     state: 'NY',
-    zip: 10025
+    zip: 10025,
+    user_id: users.rachel.id,
+    order_id: orders.order2.id
   },
-  kalNew: {
+  'kalNew': {
     street: '15 Essex St., 1R',
     city: 'New York',
     state: 'NY',
-    zip: 10016
+    zip: 10016,
+    user_id: users.aria.id
   },
-  fake: {
+  'fake': {
     street: '1234 Fake St.',
     city: 'Nowhere',
-    state: 'CA'
+    state: 'CA',
+    zip: 90210,
+    user_id: users.betty.id
   }
 })
+)
 
-const products = seed(Product, {
-  kittenMitten: {
-    title: 'Kitten Mitten',
-    description: 'Our newest hand bracelet is easy-breezy cool - gracefully accentuating the wrist. Delicate yet sturdy, the Kitten Mitten is built to last.',
-    photos: ['https://www.catbirdnyc.com/media/catalog/product/o/n/onanna-01.jpg', 'https://www.catbirdnyc.com/media/catalog/product/y/g/ygkm_on2.jpg', 'https://www.catbirdnyc.com/media/catalog/product/cache/1/image/1000x/602f0fa2c1f0d1ba5e241f914e856ff9/k/i/kittenmittenyg.jpg'],
-    price: 25.00,
-    quantity: 10
+const products = seed(Product,
+  ({ categories }) => ({
+    'kittenMitten': {
+      title: 'Kitten Mitten',
+      description: 'Our newest hand bracelet is easy-breezy cool - gracefully accentuating the wrist. Delicate yet sturdy, the Kitten Mitten is built to last.',
+      photos: ['https://www.catbirdnyc.com/media/catalog/product/o/n/onanna-01.jpg', 'https://www.catbirdnyc.com/media/catalog/product/y/g/ygkm_on2.jpg', 'https://www.catbirdnyc.com/media/catalog/product/cache/1/image/1000x/602f0fa2c1f0d1ba5e241f914e856ff9/k/i/kittenmittenyg.jpg'],
+      price: 25.00,
+      quantity: 10,
+      category_id: categories.bracelets.id
+    },
+    'snowQueenRing': {
+      title: 'Snow Queen Ring',
+      description: 'The Snow Queen will melt your heart into a shining puddle of diamond-y sparkle. We\'ve been dreaming of this ring for years. A Snow Queen\'s thimble\'s worth of rose cut and brilliant cut diamonds, sit in a glorious, luminescent curve. Made to hug the lines of a multitude of solitaires and other style engagement rings.',
+      photos: ['https://s-media-cache-ak0.pinimg.com/originals/01/a5/bc/01a5bc44325679a8fcd91d7e09108dda.jpg', 'https://s-media-cache-ak0.pinimg.com/originals/ee/f4/19/eef419e0625faf40f8b2b73d4bbaa45b.jpg'],
+      price: 150.00,
+      quantity: 3,
+      category_id: categories.rings.id
+    },
+    'earNutEarrings': {
+      title: 'Ear Nut Earring, Gold',
+      description: 'These smart and simple studs take inspiration from the back of a nose ring, eliminating the need for a backing. Perfect for every day wear, also works perfectly for the often forgotten second and third holes.',
+      photos: ['https://www.catbirdnyc.com/media/catalog/product/cache/1/image/1000x/602f0fa2c1f0d1ba5e241f914e856ff9/n/u/nut7.jpg'],
+      price: 20.00,
+      quantity: 50,
+      category_id: categories.earrings.id
+    },
+    'wanderingStarRing': {
+      title: 'Wandering Star Ring, Opal',
+      description: 'A ring of epic beauty, plucked straight from the night sky. 14k yellow gold, 5mm Australian opal, 10 brilliant diamonds on a 1.2mm solid gold band, total carat wieght is approx. 0.6 ct, handmade in Montreal.',
+      photos: ['https://www.catbirdnyc.com/media/catalog/product/cache/1/image/1000x/602f0fa2c1f0d1ba5e241f914e856ff9/w/a/wanderingstar4.jpg', 'https://s-media-cache-ak0.pinimg.com/236x/de/40/33/de403318258ec677bb6a8c38b31b1608.jpg'],
+      price: 120.00,
+      quantity: 25,
+      category_id: categories.rings.id
+    },
+    'twoStepChainEarrings': {
+      title: 'Two Step Chain Earrings, Opal',
+      description: 'Smallest moody opals to frame your face, and swing ever-so-gently from your lobes. Solid 14k yellow gold, 2mm Australian opals, total length of earring: 1/2 inch, made in Brooklyn, sold as a pair.',
+      photos: ['https://www.catbirdnyc.com/media/catalog/product/cache/1/image/1000x/602f0fa2c1f0d1ba5e241f914e856ff9/w/w/wwake_opaltwostep2.jpg', 'https://www.catbirdnyc.com/media/catalog/product/cache/1/image/1000x/602f0fa2c1f0d1ba5e241f914e856ff9/w/w/wwake_opaltwostep6.jpg'],
+      price: 50.00,
+      quantity: 34,
+      category_id: categories.earrings.id
+    }
+  })
+)
+
+const categories = seed(Category, {
+  earrings: {
+    name: 'Earrings'
   },
-  snowQueenRing: {
-    title: 'Snow Queen Ring',
-    description: 'The Snow Queen will melt your heart into a shining puddle of diamond-y sparkle. We\'ve been dreaming of this ring for years. A Snow Queen\'s thimble\'s worth of rose cut and brilliant cut diamonds, sit in a glorious, luminescent curve. Made to hug the lines of a multitude of solitaires and other style engagement rings.',
-    photos: ['https://s-media-cache-ak0.pinimg.com/originals/01/a5/bc/01a5bc44325679a8fcd91d7e09108dda.jpg', 'https://s-media-cache-ak0.pinimg.com/originals/ee/f4/19/eef419e0625faf40f8b2b73d4bbaa45b.jpg'],
-    price: 150.00,
-    quantity: 3
+  rings: {
+    name: 'Rings'
   },
-  earNutEarrings: {
-    title: 'Ear Nut Earring, Gold',
-    description: 'These smart and simple studs take inspiration from the back of a nose ring, eliminating the need for a backing. Perfect for every day wear, also works perfectly for the often forgotten second and third holes.',
-    photos: ['https://www.catbirdnyc.com/media/catalog/product/cache/1/image/1000x/602f0fa2c1f0d1ba5e241f914e856ff9/n/u/nut7.jpg'],
-    price: 20.00,
-    quantity: 50
+  bracelets: {
+    name: 'Bracelets'
   },
-  wanderingStarRing: {
-    title: 'Wandering Star Ring, Opal',
-    description: 'A ring of epic beauty, plucked straight from the night sky. 14k yellow gold, 5mm Australian opal, 10 brilliant diamonds on a 1.2mm solid gold band, total carat wieght is approx. 0.6 ct, handmade in Montreal.',
-    photos: ['https://www.catbirdnyc.com/media/catalog/product/cache/1/image/1000x/602f0fa2c1f0d1ba5e241f914e856ff9/w/a/wanderingstar4.jpg', 'https://s-media-cache-ak0.pinimg.com/236x/de/40/33/de403318258ec677bb6a8c38b31b1608.jpg'],
-    price: 120.00,
-    quantity: 25
-  },
-  twoStepChainEarrings: {
-    title: 'Two Step Chain Earrings, Opal',
-    description: 'Smallest moody opals to frame your face, and swing ever-so-gently from your lobes. Solid 14k yellow gold, 2mm Australian opals, total length of earring: 1/2 inch, made in Brooklyn, sold as a pair.',
-    photos: ['https://www.catbirdnyc.com/media/catalog/product/cache/1/image/1000x/602f0fa2c1f0d1ba5e241f914e856ff9/w/w/wwake_opaltwostep2.jpg', 'https://www.catbirdnyc.com/media/catalog/product/cache/1/image/1000x/602f0fa2c1f0d1ba5e241f914e856ff9/w/w/wwake_opaltwostep6.jpg'],
-    price: 50.00,
-    quantity: 34
+  necklaces: {
+    name: 'Necklaces'
   }
-
 })
 
 const reviews = seed(Review,
