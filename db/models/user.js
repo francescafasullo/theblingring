@@ -6,6 +6,7 @@ const bcrypt = require('bcryptjs')
 
 const Review = require('./review')
 const Order = require('./order')
+const Address = require('./address')
 
 module.exports = db => db.define('user', {
   name: STRING,
