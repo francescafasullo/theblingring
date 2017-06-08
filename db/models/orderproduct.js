@@ -2,21 +2,21 @@
 
 const Sequelize = require('sequelize')
 
-module.exports = db => db.define('orderproduct', {
-  productId: {
-    type: Sequelize.INTEGER,
-    allowNull: false
-  },
+module.exports = db => db.define('order_product', {
   price: {
-    type: Sequelize.FLOAT,
+    type: Sequelize.DECIMAL,
     allowNull: false
   },
   quantity: {
     type: Sequelize.INTEGER,
-    allowNull: false
+    allowNull: false,
+    validate: {
+      min: 1
+    }
   }
 })
 
 module.exports.associations = (Orderproduct, {Product, Order}) => {
   Orderproduct.belongsTo(Order)
+  Orderproduct.belongsTo(Product)
 }
