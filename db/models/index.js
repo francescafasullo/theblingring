@@ -18,7 +18,7 @@ const app = require('APP')
       Orderproduct: require('./orderproduct'),
       Product: require('./product'),
       Review: require('./review'),
-
+      Address: require('./address'),
       Order: require('./order'),
       OrderProduct: require('./orderproduct')
 
