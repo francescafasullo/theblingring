@@ -6,6 +6,10 @@ export const SignUp = ({ signup }) => {
         evt.preventDefault()
         signup(evt.target.email.value, evt.target.password.value)
       }}>
+        <div className="form-group">
+          <label>First Name</label>
+          <input name="firstName" type="text" className="form-control" placeholder="Enter a first name..." />
+        </div>
         <input name="email" />
         <input name="password" type="password" />
         <input type="submit" value="Signup" />

@@ -126,13 +126,13 @@ auth.get('/whoami', (req, res) => res.send(req.user))
 auth.post('/login/local', passport.authenticate('local', {successRedirect: '/'}))
 
 auth.post('/signup/local', (req, res, next) => {
-  console.log('what is in here', req.params)
-  User.findOne({where: {email: req.params.email}})
+  User.findOne({where: {email: req.body.email}})
   .then(user => {
     if (user) {
       return {message: 'User already exists'}
     } else {
-      return User.create({email: req.params.email, password: req.params.password})
+      console.log('attempting to create new user')
+      return User.create({email: req.body.email, password: req.body.password})
     }
   })
   .then(user => res.user)
