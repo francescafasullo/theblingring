@@ -14,23 +14,12 @@ module.exports = db => db.define('users', {
     validate: {
       isEmail: true,
       notEmpty: true,
+      unique: true
     }
   },
   isAdmin: {
     type: BOOLEAN,
     defaultValue: false
-  },
-  billingHouseNum: {
-    type: STRING,
-  },
-  billingZipCode: {
-    type: INTEGER,
-  },
-  billingCity: {
-    type: STRING
-  },
-  billingState: {
-    type: STRING
   },
 
   // We support oauth, so users may or may not have passwords.
