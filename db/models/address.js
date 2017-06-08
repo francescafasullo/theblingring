@@ -12,7 +12,7 @@ module.exports = db => db.define('address', {
     allowNull: false
   },
   state: {
-    type: Sequelize.ENUM('AL, AK, AZ, AR, CA, CO, CT, DE, DC, FL, GA, HI, ID, IL, IN, IA, KS, KY, LA, ME, MD, MA, MI, MN, MS, MO, MT, NE, NV, NM, NY, NC, ND, OH, OK, OR, PA, PR, RI, SC, SD, TN, TX, UT, VT, VA, WA, WV, WI, WY'),
+    type: Sequelize.ENUM('AL', 'AK', 'AZ', 'AR', 'CA', 'CO', 'CT', 'DE', 'DC', 'FL', 'GA', 'HI', 'ID', 'IL', 'IN', 'IA', 'KS', 'KY', 'LA', 'ME', 'MD', 'MA', 'MI', 'MN', 'MS', 'MO', 'MT', 'NE', 'NV', 'NM', 'NY', 'NC', 'ND', 'OH', 'OK', 'OR', 'PA', 'PR', 'RI', 'SC', 'SD', 'TN', 'TX', 'UT', 'VT', 'VA', 'WA', 'WV', 'WI', 'WY'),
     allowNull: false
   },
   zip: {
@@ -24,6 +24,6 @@ module.exports = db => db.define('address', {
 })
 
 module.exports.associations = (Address, {User, Order}) => {
-  Address.belongsToMany(Order)
-  Address.belongsToMany(User)
+  Address.belongsToMany(Order, {through: 'OrderAddress'})
+  Address.belongsToMany(User, {through: 'UserAddress'})
 }

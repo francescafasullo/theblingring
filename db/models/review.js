@@ -2,7 +2,7 @@
 
 const Sequelize = require('sequelize')
 
-module.exports = db => db.define('reviews', {
+module.exports = db => db.define('review', {
   text: {
     type: Sequelize.TEXT,
     allowNull: false,

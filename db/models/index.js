@@ -17,9 +17,11 @@ const app = require('APP')
       User: require('./user'),
       Product: require('./product'),
       Review: require('./review'),
-
       Order: require('./order'),
-      OrderProduct: require('./orderproduct')
+      OrderProduct: require('./orderproduct'),
+      Cart: require('./cart'),
+      Category: require('./category'),
+      Address: require('./address')
 
       // ---------- Add new models here ----------
     }

@@ -3,18 +3,19 @@
 console.log('seed file hit')
 
 const db = require('APP/db')
-    , {User, Product, Review, Order, OrderProduct, Promise} = db
+    , {User, Product, Review, Order, OrderProduct, Address, Promise} = db
     , {mapValues} = require('lodash')
 
 function seedEverything() {
   const seeded = {
     users: users(),
-    products: products(),
+    products: products()
   }
 
   seeded.reviews = reviews(seeded)
   seeded.orders = orders(seeded)
   seeded.orderProducts = orderProducts(seeded)
+  seeded.addresses = addresses(seeded)
 
   return Promise.props(seeded)
 }
@@ -57,6 +58,38 @@ const users = seed(User, {
     isAdmin: false
   }
 
+})
+
+const addresses = seed(Address, {
+  elLago: {
+    street: '1111 Woodland Dr.',
+    city: 'El Lago',
+    state: 'TX',
+    zip: 77586
+  },
+  harlem: {
+    street: '207 E 120th St., PH',
+    city: 'New York',
+    state: 'NY',
+    zip: 10035
+  },
+  kal: {
+    street: '420 Riverside Dr., 5E',
+    city: 'New York',
+    state: 'NY',
+    zip: 10025
+  },
+  kalNew: {
+    street: '15 Essex St., 1R',
+    city: 'New York',
+    state: 'NY',
+    zip: 10016
+  },
+  fake: {
+    street: '1234 Fake St.',
+    city: 'Nowhere',
+    state: 'CA'
+  }
 })
 
 const products = seed(Product, {
@@ -156,21 +189,21 @@ const orders = seed(Order,
 const orderProducts = seed(OrderProduct,
     ({users, products, orders}) => ({
       'lordOfTheRings1': {
-        productId: products.wanderingStarRing.id,
+        product_id: products.wanderingStarRing.id,
         price: products.wanderingStarRing.price,
         quantity: 1,
         user_id: users.francesca.id,
         order_id: orders.lordOfTheRings.id
       },
       'lordOfTheRings2': {
-        productId: products.snowQueenRing.id,
+        product_id: products.snowQueenRing.id,
         price: products.snowQueenRing.price,
         quantity: 1,
         user_id: users.francesca.id,
         order_id: orders.lordOfTheRings.id
       },
       'order2item': {
-        productId: products.twoStepChainEarrings.id,
+        product_id: products.twoStepChainEarrings.id,
         price: products.twoStepChainEarrings.price,
         quantity: 1,
         user_id: users.rachel.id,
