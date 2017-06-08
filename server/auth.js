@@ -132,7 +132,7 @@ auth.post('/signup/local', (req, res, next) => {
       return {message: 'User already exists'}
     } else {
       console.log('attempting to create new user')
-      return User.create({email: req.body.email, password: req.body.password})
+      return User.create({name: req.body.name, email: req.body.email, password: req.body.password})
     }
   })
   .then(user => res.user)

@@ -1,18 +1,18 @@
 import React, { Component } from 'react'
+import { FormControl, FormGroup } from 'react-bootstrap'
 
 export const SignUp = ({ signup }) => {
   return (
       <form onSubmit={evt => {
         evt.preventDefault()
-        signup(evt.target.email.value, evt.target.password.value)
+        signup(evt.target.name.value, evt.target.email.value, evt.target.password.value)
       }}>
-        <div className="form-group">
-          <label>First Name</label>
-          <input name="firstName" type="text" className="form-control" placeholder="Enter a first name..." />
-        </div>
-        <input name="email" />
-        <input name="password" type="password" />
-        <input type="submit" value="Signup" />
+        <FormGroup>
+          <FormControl name="name" type="text" placeholder="Enter a name..." />
+          <FormControl name="email" type="email" placeholder="Enter an email..." />
+          <FormControl name="password" type="password" placeholder="Enter a password..." />
+          <FormControl type="submit" value="Signup" />
+        </FormGroup>
       </form>
   )
 }

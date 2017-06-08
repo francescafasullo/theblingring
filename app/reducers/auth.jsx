@@ -20,12 +20,13 @@ export const login = (username, password) =>
       .then(() => dispatch(whoami()))
       .catch(() => dispatch(whoami()))
 
-export const signup = (email, password) => {
+export const signup = (name, email, password) => {
+  console.log('name', name)
   return dispatch =>
-    axios.post('/api/auth/signup/local', {email, password})
+    axios.post('/api/auth/signup/local', {name, email, password})
     .then((user) => {
-      console.log(user)
-      dispatch(login(email, password))
+      console.log('created', user)
+      return dispatch(login(email, password))
     })
     .catch(console.error(Error))
 }
