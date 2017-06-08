@@ -2,7 +2,7 @@
 
 const Sequelize = require('sequelize')
 
-module.exports = db => db.define('products', {
+module.exports = db => db.define('product', {
   title: {
     type: Sequelize.STRING,
     allowNull: false
@@ -25,7 +25,8 @@ module.exports = db => db.define('products', {
   }
 })
 
-// module.exports.associations = (Product, {Review, Category}) => {
-//   Product.hasMany(Review)
-//   Product.belongsToMany(Category)
-// }
+module.exports.associations = (Product, {Review, Category, Order}) => {
+  Product.hasMany(Review)
+  Product.belongsTo(Category)
+  Product.belongsToMany(Order, {through: 'order_product'})
+}
