@@ -16,7 +16,7 @@ module.exports = db => db.define('product', {
     defaultValue: ['http://via.placeholder.com/200x200']
   },
   price: {
-    type: Sequelize.FLOAT,
+    type: Sequelize.DECIMAL,
     allowNull: false
   },
   quantity: {
@@ -25,8 +25,8 @@ module.exports = db => db.define('product', {
   }
 })
 
-module.exports.associations = (Product, {Review, Category, Order}) => {
+module.exports.associations = (Product, {Review, Category, Order, OrderProduct}) => {
   Product.hasMany(Review)
   Product.belongsTo(Category)
-  Product.belongsToMany(Order, {through: 'order_product'})
+  Product.belongsToMany(Order, {through: OrderProduct})
 }
