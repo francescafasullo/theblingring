@@ -21,31 +21,12 @@ module.exports = db => db.define('users', {
     type: BOOLEAN,
     defaultValue: false
   },
-  billingHouseNum: {
-    type: STRING,
-  },
-  billingZipCode: {
-    type: INTEGER,
-  },
-  billingCity: {
-    type: STRING
-  },
-  billingState: {
-    type: STRING
-  },
 
   // We support oauth, so users may or may not have passwords.
   password_digest: STRING, // This column stores the hashed password in the DB, via the beforeCreate/beforeUpdate hooks
   password: VIRTUAL // Note that this is a virtual, and not actually stored in DB
 }, {
   indexes: [{fields: ['email'], unique: true}],
-  // validate: {
-  //   zipValid() {
-  //     if (this.billingZipCode.length !== 5) {
-  //       throw new Error('Zip code must be valid')
-  //     }
-  //   }
-  // },
   hooks: {
     beforeCreate: setEmailAndPassword,
     beforeUpdate: setEmailAndPassword,
