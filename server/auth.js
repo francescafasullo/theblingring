@@ -134,7 +134,9 @@ auth.post('/signup/local', (req, res, next) => {
       return User.create({name: req.body.name, email: req.body.email, password: req.body.password})
     }
   })
-  .then(user => res.user)
+  .then(user => {
+    return res.send(user)
+  })
   .catch(next)
 })
 
