@@ -46,7 +46,7 @@ export const getCategories = () =>
 
 export const getProductsByCategory = (categoryId) =>
   dispatch => {
-    axios.get(`/api/products/categories/:categoryId`)
+    axios.get(`/api/products/categories/${categoryId}`)
     .then(res => res.data)
     .then(category => dispatch(getAllProductsInCategory(category)))
     .catch(err => console.error(err))

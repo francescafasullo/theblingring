@@ -1,6 +1,6 @@
 import React from 'react'
 import { Navbar, Nav, NavItem } from 'react-bootstrap'
-import {Link} from 'react-router'
+import {LinkContainer} from 'react-router-bootstrap'
 
 export default class Navigation extends React.Component {
   componentDidMount() {
@@ -16,7 +16,7 @@ export default class Navigation extends React.Component {
         </Navbar.Header>
         <Nav>
           {
-            categories.map(category => <NavItem key={category.id}><Link to={`/products/categories/${category.id}`}>{category.name}</Link></NavItem>)
+            categories.map(category => <LinkContainer to={`/products/categories/${category.id}`} key={category.id}><NavItem>{category.name}</NavItem></LinkContainer>)
 
             /* {user ? <WhoAmI/> : <Login/>}
             cart stuff here too

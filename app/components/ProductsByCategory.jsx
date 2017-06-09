@@ -2,13 +2,12 @@ import React from 'react'
 import {Grid, Col, Thumbnail} from 'react-bootstrap'
 
 export default(props) => {
-  const products = this.props.allProducts
-
+  const products = props.allProducts
+  console.log('THE PROPS: ', props)
   return (
     <div>
       <Grid>
         {
-
           products.map(product => {
             return (
             <Col xs={6} md={4} key={product.id}>
