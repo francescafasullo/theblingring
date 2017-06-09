@@ -46,7 +46,7 @@ export const getCategories = () =>
 
 export const getProductsByCategory = (categoryId) =>
   dispatch => {
-    axios.get(`/api/products/categories/:categoryId`)
+    axios.get(`/api/products/categories/${categoryId}`)
     .then(res => res.data)
     .then(category => dispatch(getAllProductsInCategory(category)))
     .catch(err => console.error(err))
@@ -57,13 +57,16 @@ const reducer = (state = initialState, action) => {
   const newState = Object.assign({}, state)
 
   switch (action.type) {
-
   case GET_SINGLE_PRODUCT:
     newState.selectedProduct = action.selectedProduct
     break
 
   case GET_ALL_CATEGORIES:
     newState.allCategories = action.allCategories
+    break
+
+  case GET_ALL_PRODUCTS_IN_CATEGORY:
+    newState.allProducts = action.categoryProducts
     break
 
   default:

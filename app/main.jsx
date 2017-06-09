@@ -12,8 +12,7 @@ import ProductDetailsContainer from './containers/ProductDetailsContainer'
 import NavigationContainer from './containers/NavigationContainer'
 import ProductsByCategoryContainer from './containers/ProductsByCategoryContainer'
 
-import {getOneProduct} from './reducers/products.jsx'
-import {getProductsByCategory} from './reducers/products.jsx'
+import {getOneProduct, getProductsByCategory} from './reducers/products.jsx'
 
 export const onSingleProductEnter = nextRouterState => {
   const productId = nextRouterState.params.productId
@@ -21,7 +20,7 @@ export const onSingleProductEnter = nextRouterState => {
 }
 
 export const onSingleCategoryEnter = nextRouterState => {
-  const categoryName = nextRouterState.params.categoryId
+  const categoryId = nextRouterState.params.categoryId
   store.dispatch(getProductsByCategory(categoryId))
 }
 
@@ -46,7 +45,7 @@ render(
         <Route path ="/signup" component={SignUp} />
         <Route path="/jokes" component={Jokes} />
         <Route path="/products/:productId" component={ProductDetailsContainer} onEnter={onSingleProductEnter}/>
-        <Route path="/products/category/:categoryId" component={ProductsByCategoryContainer} onEnter={onSingleCategoryEnter} />
+        <Route path="/products/categories/:categoryId" component={ProductsByCategoryContainer} onEnter={onSingleCategoryEnter} />
       </Route>
       <Route path='*' component={NotFound} />
     </Router>

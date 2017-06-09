@@ -17,7 +17,7 @@ module.exports = require('express').Router()
     .catch(next))
 
   .get('/categories/:categoryId', (req, res, next) =>
-    Product.findAll({where: {categoryId: req.params.categoryId}})
+    Product.findAll({where: {category_id: req.params.categoryId}})
     .then(products => res.json(products))
     .catch(next))
 
