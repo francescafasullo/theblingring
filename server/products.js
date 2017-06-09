@@ -16,6 +16,11 @@ module.exports = require('express').Router()
     .then(categories => res.json(categories))
     .catch(next))
 
+  .get('/categories/:categoryId', (req, res, next) =>
+    Product.findAll({where: {categoryId: req.params.categoryId}})
+    .then(products => res.json(products))
+    .catch(next))
+
   .get('/:productId', (req, res, next) => {
     const productId = req.params.productId
     Product.findById(productId)
