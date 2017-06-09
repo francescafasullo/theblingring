@@ -20,16 +20,13 @@ export const login = (username, password) =>
       .then(() => dispatch(whoami()))
       .catch(() => dispatch(whoami()))
 
-export const signup = (name, email, password) => {
-  console.log('name', name)
-  return dispatch =>
+export const signup = (name, email, password) =>
+  dispatch =>
     axios.post('/api/auth/signup/local', {name, email, password})
     .then((user) => {
-      dispatch(login(user.dataValues.email, user.dataValues.password))
-      console.log(user.dataValues.email, user.dataValues.password)
+      return dispatch(login(user.data.email, user.data.password))
     })
-    .catch(console.error(Error))
-}
+    .catch(() => dispatch(whoami()))
 
 //  Problem accessing email and password in post route, not getting passed to backend
 
