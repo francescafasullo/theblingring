@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { browserHistory } from 'react-router'
 
 const reducer = (state=null, action) => {
   switch (action.type) {
@@ -17,7 +18,11 @@ export const login = (username, password) =>
   dispatch =>
     axios.post('/api/auth/login/local',
       {username, password})
+      .then((user) => {
+        return dispatch(loadCart(user.data.id))
+      })
       .then(() => dispatch(whoami()))
+      .then(() => browserHistory.push('/'))
       .catch(() => dispatch(whoami()))
 
 export const signup = (name, email, password) =>
@@ -28,7 +33,11 @@ export const signup = (name, email, password) =>
     })
     .catch(() => dispatch(whoami()))
 
-//  Problem accessing email and password in post route, not getting passed to backend
+export const loadCart = (userId) => {
+  return dispatch =>
+    axios.post('/api/auth/findCart/local', {userId})
+    .catch(() => dispatch(whoami()))
+}
 
 export const logout = () =>
   dispatch =>
