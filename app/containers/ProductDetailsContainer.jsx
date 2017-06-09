@@ -4,10 +4,10 @@ import {connect} from 'react-redux'
 import {getOneProduct} from '../reducers/products'
 import ProductDetails from '../components/ProductDetails'
 
-const mapStateToProps = state => state
+const mapStateToProps = state => {
+  return {
+    selectedProduct: state.products.selectedProduct
+  }
+}
 
-const mapDispatchToProps = dispatch => ({
-  loadSingleProduct: productId => dispatch(getOneProduct(productId))
-})
-
-export default connect(mapStateToProps, mapDispatchToProps)(ProductDetails)
+export default connect(mapStateToProps)(ProductDetails)
