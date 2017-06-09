@@ -11,6 +11,14 @@ import WhoAmI from './components/WhoAmI'
 import NotFound from './components/NotFound'
 import SignUp from './components/SignUp'
 import ProductDetailsContainer from './containers/ProductDetailsContainer'
+import NavigationContainer from './containers/NavigationContainer'
+
+import {getOneProduct} from './reducers/products.jsx'
+
+export const onSingleProductEnter = nextRouterState => {
+  const productId = nextRouterState.params.productId
+  store.dispatch(getOneProduct(productId))
+}
 
 const ExampleApp = connect(
   ({ auth }) => ({ user: auth })
@@ -19,6 +27,7 @@ const ExampleApp = connect(
     <div>
       <nav>
         {user ? <WhoAmI/> : <Login/>}
+        <NavigationContainer />
       </nav>
       {children}
     </div>
@@ -31,7 +40,7 @@ render(
         <IndexRedirect to="/jokes" />
         <Route path ="/signup" component={SignUp} />
         <Route path="/jokes" component={Jokes} />
-        <Route path="/productDetailTest" component={ProductDetailsContainer} />
+        <Route path="/products/:productId" component={ProductDetailsContainer} onEnter={onSingleProductEnter}/>
       </Route>
       <Route path='*' component={NotFound} />
     </Router>
