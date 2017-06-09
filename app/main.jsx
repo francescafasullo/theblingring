@@ -6,8 +6,6 @@ import {connect, Provider} from 'react-redux'
 
 import store from './store'
 import Jokes from './components/Jokes'
-import Login from './components/Login'
-import WhoAmI from './components/WhoAmI'
 import NotFound from './components/NotFound'
 import SignUp from './components/SignUp'
 import ProductDetailsContainer from './containers/ProductDetailsContainer'
@@ -26,23 +24,23 @@ export const onSingleCategoryEnter = nextRouterState => {
   store.dispatch(getProductsByCategory(categoryId))
 }
 
-const ExampleApp = connect(
+const RootApp = connect(
   ({ auth }) => ({ user: auth })
 )(
-  ({ user, children }) =>
+  ({ user, children }) => {
+    return (
     <div>
       <nav>
-        {user ? <WhoAmI/> : <Login/>}
-        <NavigationContainer />
+        <NavigationContainer user={user}/>
       </nav>
       {children}
-    </div>
-)
+    </div>)
+})
 
 render(
   <Provider store={store}>
     <Router history={browserHistory}>
-      <Route path="/" component={ExampleApp}>
+      <Route path="/" component={RootApp}>
         <IndexRedirect to="/jokes" />
         <Route path ="/signup" component={SignUp} />
         <Route path="/jokes" component={Jokes} />
