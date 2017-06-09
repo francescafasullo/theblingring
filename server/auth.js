@@ -123,9 +123,10 @@ passport.use(new (require('passport-local').Strategy)(
 auth.get('/whoami', (req, res) => res.send(req.user))
 
 // POST requests for local login:
-auth.post('/login/local', passport.authenticate('local', {successRedirect: '/'}), function(req, res) {
-  console.log('logged in user???', req.user)
-})
+auth.post('/login/local', passport.authenticate('local'), function(req, res) {
+  res.send(req.user)
+}
+)
 
 auth.post('/signup/local', (req, res, next) => {
   User.findOne({where: {email: req.body.email}})
@@ -143,10 +144,9 @@ auth.post('/signup/local', (req, res, next) => {
 })
 
 auth.post('/findCart/local', (req, res, next) => {
-  Cart.findOrCreate({where: {user_id: req.body.userId}})
+  return Cart.findOrCreate({where: {user_id: req.body.userId}})
   .spread((cart, created) => {
-    console.log('cart', cart)
-    console.log('created', created)
+    res.send(cart)
   })
 })
 
