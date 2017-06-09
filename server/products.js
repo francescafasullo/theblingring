@@ -13,10 +13,7 @@ module.exports = require('express').Router()
   .get('/:productId', (req, res, next) => {
     const productId = req.params.productId
     Product.findById(productId)
-    .then(product => {
-      res.json(product)
-      console.log(product)
-    })
+    .then(product => res.json(product))
     .catch(next)
   })
 
