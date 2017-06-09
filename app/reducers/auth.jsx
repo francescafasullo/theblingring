@@ -25,8 +25,8 @@ export const signup = (name, email, password) => {
   return dispatch =>
     axios.post('/api/auth/signup/local', {name, email, password})
     .then((user) => {
-      console.log('created', user)
-      return dispatch(login(email, password))
+      dispatch(login(user.dataValues.email, user.dataValues.password))
+      console.log(user.dataValues.email, user.dataValues.password)
     })
     .catch(console.error(Error))
 }

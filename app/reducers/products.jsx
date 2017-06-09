@@ -8,7 +8,7 @@ const initialState = {
 /* ---- actions ---- */
 const GET_SINGLE_PRODUCT = 'GET_SINGLE_PRODUCT'
 
-/* ---- actions creators ---- */
+/* ---- action creators ---- */
 const getSingleProduct = (productById) => ({
   type: GET_SINGLE_PRODUCT,
   selectedProduct: productById
@@ -28,6 +28,7 @@ const reducer = (state = initialState, action) => {
   const newState = Object.assign({}, state)
 
   switch (action.type) {
+
   case GET_SINGLE_PRODUCT:
     newState.selectedProduct = action.selectedProduct
     break
