@@ -9,6 +9,7 @@ const initialState = {
 /* ---- actions ---- */
 const GET_SINGLE_PRODUCT = 'GET_SINGLE_PRODUCT'
 const GET_ALL_CATEGORIES = 'GET_ALL_CATEGORIES'
+const GET_ALL_PRODUCTS_IN_CATEGORY = 'GET_ALL_PRODUCTS_IN_CATEGORY'
 
 /* ---- action creators ---- */
 const getSingleProduct = (productById) => ({
@@ -19,6 +20,11 @@ const getSingleProduct = (productById) => ({
 const getAllCategories = (categories) => ({
   type: GET_ALL_CATEGORIES,
   allCategories: categories
+})
+
+const getAllProductsInCategory = (products) => ({
+  type: GET_ALL_PRODUCTS_IN_CATEGORY,
+  categoryProducts: products
 })
 
 /* ---- dispatchers ---- */
@@ -35,6 +41,14 @@ export const getCategories = () =>
     axios.get(`/api/products/categories`)
     .then(res => res.data)
     .then(categories => dispatch(getAllCategories(categories)))
+    .catch(err => console.error(err))
+  }
+
+export const getProductsByCategory = (categoryId) =>
+  dispatch => {
+    axios.get(`/api/products/categories/:categoryId`)
+    .then(res => res.data)
+    .then(category => dispatch(getAllProductsInCategory(category)))
     .catch(err => console.error(err))
   }
 
