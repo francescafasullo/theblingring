@@ -8,6 +8,7 @@ export default(props) => {
     <div>
       <Grid>
         {
+
           products.map(product => {
             return (
             <Col xs={6} md={4} key={product.id}>
