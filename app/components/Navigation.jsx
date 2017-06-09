@@ -7,7 +7,6 @@ export default class Navigation extends React.Component {
   }
 
   render() {
-    console.log('THE PROPS: ', this.props)
     const categories = this.props.allCategories
     return (
       <Navbar>
