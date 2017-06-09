@@ -6,7 +6,7 @@ import {getCategories} from '../reducers/products'
 import Navigation from '../components/Navigation'
 
 const mapStateToProps = state => ({
-  allCategories: state.allCategories
+  allCategories: state.products.allCategories
 })
 
 const mapDispatchToProps = dispatch => ({

@@ -7,6 +7,8 @@ export default class Navigation extends React.Component {
   }
 
   render() {
+    console.log('THE PROPS: ', this.props)
+    const categories = this.props.allCategories
     return (
       <Navbar>
         <Navbar.Header>
@@ -14,16 +16,8 @@ export default class Navigation extends React.Component {
         </Navbar.Header>
         <Nav>
           {
+            categories.map(category => <NavItem>{category.name}</NavItem>)
 
-            /* for each category in db
-              <NavItem Link={/category.name}>{category.name}</NavItem>
-             */
-          }
-          <NavItem>Earrings</NavItem>
-          <NavItem>Rings</NavItem>
-          <NavItem>Necklaces</NavItem>
-          <NavItem>Bracelets</NavItem>
-          {
             /* {user ? <WhoAmI/> : <Login/>}
             cart stuff here too?
              */
