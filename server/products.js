@@ -11,6 +11,11 @@ module.exports = require('express').Router()
     .then(products => res.json(products))
     .catch(next))
 
+  .get('/categories', (req, res, next) =>
+    Category.findAll()
+    .then(categories => res.json(categories))
+    .catch(next))
+
   .get('/:productId', (req, res, next) => {
     const productId = req.params.productId
     Product.findById(productId)
@@ -28,8 +33,3 @@ module.exports = require('express').Router()
       .then(reviews => res.json(reviews))
       .catch(next)
   })
-
-  .get('/categories', (req, res, next) =>
-    Category.findAll()
-    .then(categories => res.json(categories))
-    .catch(next))
