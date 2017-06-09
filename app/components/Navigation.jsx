@@ -12,14 +12,14 @@ export default class Navigation extends React.Component {
     return (
       <Navbar>
         <Navbar.Header>
-          <Navbar.Brand>The Bling Ring</Navbar.Brand>
+          <Navbar.Brand>{'\u2728'} The Bling Ring</Navbar.Brand>
         </Navbar.Header>
         <Nav>
           {
-            categories.map(category => <NavItem>{category.name}</NavItem>)
+            categories.map(category => <NavItem key={category.id}>{category.name}</NavItem>)
 
             /* {user ? <WhoAmI/> : <Login/>}
-            cart stuff here too?
+            cart stuff here too
              */
           }
         </Nav>
