@@ -11,7 +11,7 @@ import WhoAmI from './components/WhoAmI'
 import NotFound from './components/NotFound'
 import SignUp from './components/SignUp'
 import ProductDetailsContainer from './containers/ProductDetailsContainer'
-import Navigation from './components/Navigation'
+import NavigationContainer from './containers/NavigationContainer'
 
 const ExampleApp = connect(
   ({ auth }) => ({ user: auth })
@@ -20,7 +20,7 @@ const ExampleApp = connect(
     <div>
       <nav>
         {user ? <WhoAmI/> : <Login/>}
-        <Navigation />
+        <NavigationContainer />
       </nav>
       {children}
     </div>
