@@ -8,7 +8,7 @@ export default(props) => {
     <div>
       <Grid>
         {
-          products.map(product => {
+          products ? products.map(product => {
             return (
             <Col xs={6} md={4} key={product.id}>
               <Thumbnail src={product.photos[0]}>
@@ -16,7 +16,7 @@ export default(props) => {
               </Thumbnail>
             </Col>
             )
-          })
+          }) : null
         }
       </Grid>
     </div>

@@ -57,13 +57,16 @@ const reducer = (state = initialState, action) => {
   const newState = Object.assign({}, state)
 
   switch (action.type) {
-
   case GET_SINGLE_PRODUCT:
     newState.selectedProduct = action.selectedProduct
     break
 
   case GET_ALL_CATEGORIES:
     newState.allCategories = action.allCategories
+    break
+
+  case GET_ALL_PRODUCTS_IN_CATEGORY:
+    newState.allProducts = action.categoryProducts
     break
 
   default:
