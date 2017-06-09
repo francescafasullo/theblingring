@@ -3,7 +3,6 @@ import {Grid, Col, Thumbnail} from 'react-bootstrap'
 
 export default(props) => {
   const products = props.allProducts
-  console.log('THE PROPS: ', props)
   return (
     <div>
       <Grid>
