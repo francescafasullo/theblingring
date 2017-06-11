@@ -146,6 +146,38 @@ const products = seed(Product,
       price: 50.00,
       quantity: 34,
       category_id: categories.earrings.id
+    },
+    'genieLampNecklace': {
+      title: 'Genie Lamp Necklace',
+      description: 'I dream of the tiniest genie! Cast from a hand-carved genie lamp. Did we say tiniest? Cause we mean it. Tiniest. Bronze genie lamp 10mm x 7mm. 19" brass chain. Made in New York by Tiny & Mahsa.',
+      photos: ['https://www.catbirdnyc.com/media/catalog/product/cache/1/image/1000x/602f0fa2c1f0d1ba5e241f914e856ff9/g/e/genie.jpg', 'https://www.catbirdnyc.com/media/catalog/product/cache/1/image/1000x/602f0fa2c1f0d1ba5e241f914e856ff9/g/e/genie2.jpg', 'https://www.catbirdnyc.com/media/catalog/product/cache/1/image/1000x/602f0fa2c1f0d1ba5e241f914e856ff9/g/e/genie3.jpg'],
+      price: 32.00,
+      quantity: 45,
+      category_id: categories.necklaces.id
+    },
+    'crescentMoonNecklace': {
+      title: 'Crescent Moon Necklace',
+      description: 'Shining and beautiful, a dream of a necklace. Solid 14k yellow gold on a 17" chain. 14mm x 10mm moon with .08 total carat weight diamonds. Made in New York.',
+      photos: ['https://www.catbirdnyc.com/media/catalog/product/cache/1/image/1000x/602f0fa2c1f0d1ba5e241f914e856ff9/c/r/crescentnecklace-5.jpg', 'https://www.catbirdnyc.com/media/catalog/product/cache/1/image/1000x/602f0fa2c1f0d1ba5e241f914e856ff9/c/r/crescentnecklace-4.jpg', 'https://www.catbirdnyc.com/media/catalog/product/cache/1/image/1000x/602f0fa2c1f0d1ba5e241f914e856ff9/c/r/crescentnecklace-2.jpg'],
+      price: 645.00,
+      quantity: 5,
+      category_id: categories.necklaces.id
+    },
+    'opalCountingNecklace': {
+      title: 'Opal Counting Necklace',
+      description: 'How to look like the stars. For an other-worldly bride and/or every day with a busted tee and jeans. There\'s really no wrong way to wear the stars. Solid 14k yellow gold 16" chain with a mix of 4mm and 2mm Australian opals, diamons, emeralds, and tanzanite. 0.03 ct white diamonds. Handmade in Brooklyn.',
+      photos: ['https://www.catbirdnyc.com/media/catalog/product/cache/1/image/1000x/602f0fa2c1f0d1ba5e241f914e856ff9/c/o/countingnecklace6.jpg', 'https://www.catbirdnyc.com/media/catalog/product/cache/1/image/1000x/602f0fa2c1f0d1ba5e241f914e856ff9/w/w/wwakenecklace3.jpg'],
+      price: 86.00,
+      quantity: 30,
+      category_id: categories.necklaces.id
+    },
+    'grecoLariatNecklace': {
+      title: 'Greco Lariat Necklace',
+      description: 'The Greco Lariat makes fine work of your curves. A smart reimagining of the lariat, made from the sparkliest gold chain around. Wraps seductively around your neck to find the perfect resting point, but is securely held in back with the addition of a discreet clasp. Layers beautifully, an extra little glint of gold to peek out from below your favorite dress or autumn sweater. Solid 14k gold, 19.25" overall length. Handmade with love in Brooklyn.',
+      photos: ['https://www.catbirdnyc.com/media/catalog/product/cache/1/image/1000x/602f0fa2c1f0d1ba5e241f914e856ff9/g/r/greco8.jpg', 'https://www.catbirdnyc.com/media/catalog/product/cache/1/image/1000x/602f0fa2c1f0d1ba5e241f914e856ff9/g/r/greco4.jpg', 'https://www.catbirdnyc.com/media/catalog/product/cache/1/image/1000x/602f0fa2c1f0d1ba5e241f914e856ff9/g/r/grecolariat.jpg'],
+      price: 126.00,
+      quantity: 35,
+      category_id: categories.necklaces.id
     }
   })
 )
