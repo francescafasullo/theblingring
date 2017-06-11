@@ -117,7 +117,7 @@ const products = seed(Product,
     },
     'ballerinaBracelet': {
       title: 'Ballerina Bracelet, Yellow Gold',
-      description: 'Long, lean, and graceful. Looks strong and delicate on it\'s own, or in a pile. For an ultra fitted look, a gentle pinch on either side of the barre will help shape it to your wrist. Solid 14k yellow gold, 2 1/4" at its widest point and adjustable. One size fits most, 6.5" total length. Handmade in Brookyln.',
+      description: 'Long, lean, and graceful. Looks strong and delicate on it\'s own, or in a pile. For an ultra fitted look, a gentle pinch on either side of the barre will help shape it to your wrist. Solid 14k yellow gold, 2 1/4" at its widest point and adjustable. One size fits most, 6.5" total length. Handmade in Brooklyn.',
       photos: ['https://www.catbirdnyc.com/media/catalog/product/cache/1/image/1000x/602f0fa2c1f0d1ba5e241f914e856ff9/y/g/ygballerina.jpg', 'https://www.catbirdnyc.com/media/catalog/product/cache/1/image/1000x/602f0fa2c1f0d1ba5e241f914e856ff9/b/r/bracelet_yg2.jpg', 'https://www.catbirdnyc.com/media/catalog/product/cache/1/image/1000x/602f0fa2c1f0d1ba5e241f914e856ff9/b/r/bracelet_yg.jpg'],
       price: 68.00,
       quantity: 10,
@@ -139,14 +139,6 @@ const products = seed(Product,
       quantity: 3,
       category_id: categories.rings.id
     },
-    'earNutEarrings': {
-      title: 'Ear Nut Earring, Gold',
-      description: 'These smart and simple studs take inspiration from the back of a nose ring, eliminating the need for a backing. Perfect for every day wear, also works perfectly for the often forgotten second and third holes.',
-      photos: ['https://www.catbirdnyc.com/media/catalog/product/cache/1/image/1000x/602f0fa2c1f0d1ba5e241f914e856ff9/n/u/nut7.jpg'],
-      price: 20.00,
-      quantity: 50,
-      category_id: categories.earrings.id
-    },
     'wanderingStarRing': {
       title: 'Wandering Star Ring, Opal',
       description: 'A ring of epic beauty, plucked straight from the night sky. 14k yellow gold, 5mm Australian opal, 10 brilliant diamonds on a 1.2mm solid gold band, total carat wieght is approx. 0.6 ct, handmade in Montreal.',
@@ -155,12 +147,28 @@ const products = seed(Product,
       quantity: 25,
       category_id: categories.rings.id
     },
+    'earNutEarrings': {
+      title: 'Ear Nut Earring, Gold',
+      description: 'These smart and simple studs take inspiration from the back of a nose ring, eliminating the need for a backing. Perfect for every day wear, also works perfectly for the often forgotten second and third holes.',
+      photos: ['https://www.catbirdnyc.com/media/catalog/product/cache/1/image/1000x/602f0fa2c1f0d1ba5e241f914e856ff9/n/u/nut7.jpg'],
+      price: 20.00,
+      quantity: 50,
+      category_id: categories.earrings.id
+    },
     'twoStepChainEarrings': {
       title: 'Two Step Chain Earrings, Opal',
       description: 'Smallest moody opals to frame your face, and swing ever-so-gently from your lobes. Solid 14k yellow gold, 2mm Australian opals, total length of earring: 1/2 inch, made in Brooklyn, sold as a pair.',
       photos: ['https://www.catbirdnyc.com/media/catalog/product/cache/1/image/1000x/602f0fa2c1f0d1ba5e241f914e856ff9/w/w/wwake_opaltwostep2.jpg', 'https://www.catbirdnyc.com/media/catalog/product/cache/1/image/1000x/602f0fa2c1f0d1ba5e241f914e856ff9/w/w/wwake_opaltwostep6.jpg'],
       price: 50.00,
       quantity: 34,
+      category_id: categories.earrings.id
+    },
+    'tinyDancerStudEarrings': {
+      title: 'Tiny Dancer Studs, Yellow Gold',
+      description: 'These little sparklers make us extremely happy. Sold as a pair, a star and crescent moon for a little night-time magic. Moon is 8mm, star is 7mm - solid 14k yellow gold. Handmade in Brooklyn.',
+      photos: ['https://www.catbirdnyc.com/media/catalog/product/cache/1/image/1000x/602f0fa2c1f0d1ba5e241f914e856ff9/t/i/tinydancer_gold_3_1.jpg', 'https://www.catbirdnyc.com/media/catalog/product/cache/1/image/1000x/602f0fa2c1f0d1ba5e241f914e856ff9/t/i/tinydanceryg2.jpg'],
+      price: 25.00,
+      quantity: 75,
       category_id: categories.earrings.id
     },
     'genieLampNecklace': {
