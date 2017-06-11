@@ -5,7 +5,6 @@ import {render} from 'react-dom'
 import {connect, Provider} from 'react-redux'
 
 import store from './store'
-import Jokes from './components/Jokes'
 import Homepage from './components/Homepage'
 import NotFound from './components/NotFound'
 import SignUp from './components/SignUp'
