@@ -115,6 +115,22 @@ const products = seed(Product,
       quantity: 10,
       category_id: categories.bracelets.id
     },
+    'ballerinaBracelet': {
+      title: 'Ballerina Bracelet, Yellow Gold',
+      description: 'Long, lean, and graceful. Looks strong and delicate on it\'s own, or in a pile. For an ultra fitted look, a gentle pinch on either side of the barre will help shape it to your wrist. Solid 14k yellow gold, 2 1/4" at its widest point and adjustable. One size fits most, 6.5" total length. Handmade in Brookyln.',
+      photos: ['https://www.catbirdnyc.com/media/catalog/product/cache/1/image/1000x/602f0fa2c1f0d1ba5e241f914e856ff9/y/g/ygballerina.jpg', 'https://www.catbirdnyc.com/media/catalog/product/cache/1/image/1000x/602f0fa2c1f0d1ba5e241f914e856ff9/b/r/bracelet_yg2.jpg', 'https://www.catbirdnyc.com/media/catalog/product/cache/1/image/1000x/602f0fa2c1f0d1ba5e241f914e856ff9/b/r/bracelet_yg.jpg'],
+      price: 68.00,
+      quantity: 10,
+      category_id: categories.bracelets.id
+    },
+    'tinyCorsageBracelet': {
+      title: 'Tiny Corsage Bracelet, Rose Gold',
+      description: 'We told you we like things tiny! This blushingly beautiful, delicate bracelet is solid 14k rose gold with a sparkling, white 2mm diamond set in white gold. Made to be worn snug. Total length, 6.5". One size fits most, handmade in Brooklyn.',
+      photos: ['https://www.catbirdnyc.com/media/catalog/product/cache/1/image/1000x/602f0fa2c1f0d1ba5e241f914e856ff9/t/i/tinycorsagerg.jpg', 'https://www.catbirdnyc.com/media/catalog/product/cache/1/image/1000x/602f0fa2c1f0d1ba5e241f914e856ff9/t/i/tinycorsagerg3.jpg', 'https://www.catbirdnyc.com/media/catalog/product/cache/1/image/1000x/602f0fa2c1f0d1ba5e241f914e856ff9/t/i/tiny_corsage_5.jpg'],
+      price: 32.00,
+      quantity: 30,
+      category_id: categories.bracelets.id
+    },
     'snowQueenRing': {
       title: 'Snow Queen Ring',
       description: 'The Snow Queen will melt your heart into a shining puddle of diamond-y sparkle. We\'ve been dreaming of this ring for years. A Snow Queen\'s thimble\'s worth of rose cut and brilliant cut diamonds, sit in a glorious, luminescent curve. Made to hug the lines of a multitude of solitaires and other style engagement rings.',
