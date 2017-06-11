@@ -6,6 +6,7 @@ import {connect, Provider} from 'react-redux'
 
 import store from './store'
 import Jokes from './components/Jokes'
+import Homepage from './components/Homepage'
 import NotFound from './components/NotFound'
 import SignUp from './components/SignUp'
 import ProductDetailsContainer from './containers/ProductDetailsContainer'
@@ -41,9 +42,9 @@ render(
   <Provider store={store}>
     <Router history={browserHistory}>
       <Route path="/" component={RootApp}>
-        <IndexRedirect to="/jokes" />
+        <IndexRedirect to="/home" />
         <Route path ="/signup" component={SignUp} />
-        <Route path="/jokes" component={Jokes} />
+        <Route path="/home" component={Homepage} />
         <Route path="/products/:productId" component={ProductDetailsContainer} onEnter={onSingleProductEnter}/>
         <Route path="/products/categories/:categoryId" component={ProductsByCategoryContainer} onEnter={onSingleCategoryEnter} />
       </Route>

@@ -1,0 +1,20 @@
+.photoTiles {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  height: 100vw;
+  font-size: 0;
+}
+
+.photoTiles img {
+  padding: 0.4%;
+  width: 33.3%;
+  transition: .8s opacity;
+}
+
+.photoTiles:hover img {
+  opacity: 0.5;
+}
+.photoTiles:hover img:hover {
+  opacity: 1;
+}
