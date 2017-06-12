@@ -1,8 +1,8 @@
-import React from 'react'
-import {connect} from 'react-redux'
-
-import {getOneProduct} from '../reducers/products'
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import ProductDetails from '../components/ProductDetails'
+import { getOneProduct } from '../reducers/products'
+import { addItemToCart } from '../reducers/cart'
 
 const mapStateToProps = state => {
   return {
@@ -11,16 +11,30 @@ const mapStateToProps = state => {
   }
 }
 
-const addToCart = (evt) => {
-  evt.preventDefault()
-  console.log('what is in this event target', evt.target.value)
-  console.log('do i have the props', props)
-}
-
-const mapDispatchToProps = state => {
+const mapDispatchToProps = (dispatch) => {
   return {
-    addToCart: addToCart
+    addItemToCart(selectedUser, selectedProduct) {
+      dispatch(addItemToCart(selectedUser, selectedProduct))
+    }
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ProductDetails)
+class ProductDetailsContainer extends Component {
+  constructor(props) {
+    super(props)
+    this.handleAddButton = this.handleAddButton.bind(this)
+  }
+
+  handleAddButton(event) {
+    event.preventDefault()
+    this.props.addItemToCart(this.props.loggedInUser, this.props.selectedProduct)
+  }
+
+  render() {
+    return (
+      <ProductDetails {...this.state} {...this.props} handleAddButton={this.handleAddButton} />
+    )
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProductDetailsContainer)
