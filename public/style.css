@@ -18,3 +18,8 @@
 .photoTiles:hover img:hover {
   opacity: 1;
 }
+
+.image-gallery {
+  width: 300px;
+  float: left;
+}
