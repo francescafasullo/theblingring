@@ -1,7 +1,6 @@
 import React, {Component} from 'react'
 
 export default (props) => {
-  console.log('propssssssssssss', props)
   const { photos, title, description, price, id } = props.selectedProduct
   const user = props.loggedInUser
   const handleAddButton = props.handleAddButton
