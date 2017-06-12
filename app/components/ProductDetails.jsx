@@ -1,7 +1,10 @@
 import React, {Component} from 'react'
 
 export default (props) => {
+  console.log('propssssssssssss', props)
   const { photos, title, description, price, id } = props.selectedProduct
+  const user = props.loggedInUser
+  const addToCart = props.addToCart
 
   return (
     <div>
@@ -9,14 +12,9 @@ export default (props) => {
       <h1>{title}</h1>
       <p>{description}</p>
       <p>${price}</p>
-      <button type="button" className="btn btn-default btn-md" onClick={addToCart}>
-        <span id={id} className="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Add to cart!
+      <button id={id} type="button" className="btn btn-default btn-md" onClick={addToCart}>
+        <span className="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Add to cart!
       </button>
     </div>
   )
-}
-
-const addToCart = (evt) => {
-  evt.preventDefault()
-
 }

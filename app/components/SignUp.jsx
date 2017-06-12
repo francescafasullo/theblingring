@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 import { FormControl, FormGroup } from 'react-bootstrap'
+import {signup} from 'APP/app/reducers/auth'
+import {connect} from 'react-redux'
 
-export const SignUp = ({ signup }) => {
-  return (
+export const SignUp = ({ signup }) => (
       <form onSubmit={evt => {
         evt.preventDefault()
         signup(evt.target.name.value, evt.target.email.value, evt.target.password.value)
@@ -15,10 +16,6 @@ export const SignUp = ({ signup }) => {
         </FormGroup>
       </form>
   )
-}
-
-import {signup} from 'APP/app/reducers/auth'
-import {connect} from 'react-redux'
 
 export default connect(
   state => (state),
