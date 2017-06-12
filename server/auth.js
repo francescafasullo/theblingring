@@ -2,7 +2,7 @@ const app = require('APP'), {env} = app
 const debug = require('debug')(`${app.name}:auth`)
 const passport = require('passport')
 
-const {User, OAuth} = require('APP/db')
+const {User, Cart, OAuth} = require('APP/db')
 const auth = require('express').Router()
 
 /*************************
@@ -123,20 +123,31 @@ passport.use(new (require('passport-local').Strategy)(
 auth.get('/whoami', (req, res) => res.send(req.user))
 
 // POST requests for local login:
-auth.post('/login/local', passport.authenticate('local', {successRedirect: '/'}))
+auth.post('/login/local', passport.authenticate('local'), function(req, res) {
+  res.send(req.user)
+}
+)
 
 auth.post('/signup/local', (req, res, next) => {
-  console.log('what is in here', req.params)
-  User.findOne({where: {email: req.params.email}})
+  User.findOne({where: {email: req.body.email}})
   .then(user => {
     if (user) {
       return {message: 'User already exists'}
     } else {
-      return User.create({email: req.params.email, password: req.params.password})
+      return User.create({name: req.body.name, email: req.body.email, password: req.body.password})
     }
   })
-  .then(user => res.user)
+  .then(user => {
+    return res.send(user)
+  })
   .catch(next)
+})
+
+auth.post('/findCart/local', (req, res, next) => {
+  return Cart.findOrCreate({where: {user_id: req.body.userId}})
+  .spread((cart, created) => {
+    res.send(cart)
+  })
 })
 
 // GET requests for OAuth login:
