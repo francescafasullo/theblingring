@@ -32,7 +32,6 @@ cart.post('/:userId/:productId', (req, res, next) => {
 })
 
 cart.delete('/:userId/:productId', (req, res, next) => {
-  console.log(req.user)
   Cart.findOne({
     where: {
       user_id: req.params.userId
@@ -47,13 +46,18 @@ cart.delete('/:userId/:productId', (req, res, next) => {
     })
   })
   .then(item => {
-    console.log('MMMMMMMMMMMMMM', item)
     const quant = item.quantity
-    console.log('ZZZZZZZZZZZZZZZ', quant)
     if (quant <= 1) {
       return item.destroy({ force: true })
     } else if (quant > 1) {
       return item.update({quantity: (quant - 1)})
+    }
+  })
+  .then(item => {
+    if (item.quantity) {
+      res.send(item)
+    } else {
+      res.send('Item has been removed from cart')
     }
   })
   .catch(next)
