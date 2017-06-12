@@ -6,6 +6,7 @@ module.exports = db => db.define('cart_product', {
   quantity: {
     type: Sequelize.INTEGER,
     allowNull: false,
+    defaultValue: 1,
     validate: {
       min: 1
     }
