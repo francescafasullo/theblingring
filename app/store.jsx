@@ -10,7 +10,7 @@ const store = createStore(
   rootReducer,
   composeWithDevTools(
     applyMiddleware(
-      createLogger({collapsed: true}),
+      createLogger({collapsed: true}), // swap lines 13 and 14 to help debug -amkh
       thunkMiddleware
     )
   )

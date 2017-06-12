@@ -1,5 +1,5 @@
 import React from 'react'
-
+// maybe rename to allproducts? and also show all the products. -amkh
 export default (props) => {
   return (
     <div className="photoTiles">

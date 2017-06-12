@@ -43,7 +43,7 @@ render(
       <Route path="/" component={RootApp}>
         <IndexRedirect to="/home" />
         <Route path ="/signup" component={SignUp} />
-        <Route path="/home" component={Homepage} />
+        <Route path="/home" component={Homepage} /> {/* allProducts */}
         <Route path="/products/:productId" component={ProductDetailsContainer} onEnter={onSingleProductEnter}/>
         <Route path="/products/categories/:categoryId" component={ProductsByCategoryContainer} onEnter={onSingleCategoryEnter} />
       </Route>

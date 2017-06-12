@@ -81,6 +81,7 @@ passport.deserializeUser(
   (id, done) => {
     debug('will deserialize user.id=%d', id)
     User.findById(id)
+    // load in cart here maybe? Then it would be on the user everywhere -amkh
       .then(user => {
         if (!user) debug('deserialize retrieved null user for id=%d', id)
         else debug('deserialize did ok user.id=%d', id)
@@ -124,6 +125,7 @@ auth.get('/whoami', (req, res) => res.send(req.user))
 
 // POST requests for local login:
 auth.post('/login/local', passport.authenticate('local'), function(req, res) {
+  //add the cart to the user at this point
   res.send(req.user)
 }
 )
@@ -132,12 +134,14 @@ auth.post('/signup/local', (req, res, next) => {
   User.findOne({where: {email: req.body.email}})
   .then(user => {
     if (user) {
+      // add in some error handling. Make a new error and throw it -amkh
       return {message: 'User already exists'}
     } else {
       return User.create({name: req.body.name, email: req.body.email, password: req.body.password})
     }
   })
   .then(user => {
+    // look into req.logIn --> passport method that serializes user
     return res.send(user)
   })
   .catch(next)

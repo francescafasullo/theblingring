@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { FormControl, FormGroup } from 'react-bootstrap'
 
 export const SignUp = ({ signup }) => {
+  // add three more buttons for oAuth :) -amkh
   return (
       <form onSubmit={evt => {
         evt.preventDefault()

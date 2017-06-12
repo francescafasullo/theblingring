@@ -29,11 +29,14 @@ export const signup = (name, email, password) =>
   dispatch =>
     axios.post('/api/auth/signup/local', {name, email, password})
     .then((user) => {
+      // look at the backend notes for the login stuff -amkh
       return dispatch(login(user.data.email, user.data.password))
     })
+      // .then(() => dispatch(whoami())) -amkh
     .catch(() => dispatch(whoami()))
 
 export const loadCart = (userId) => {
+  // think about eager loading the cart in already :) or think about adding it to the whoAmI() -amkh
   return dispatch =>
     axios.post('/api/auth/findCart/local', {userId})
     .catch(() => dispatch(whoami()))

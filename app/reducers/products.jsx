@@ -4,6 +4,7 @@ const initialState = {
   allProducts: [],
   selectedProduct: {},
   allCategories: []
+  // maybe add in filteredProducts? default to allproducts? or keep it the way it is :) -amkh
 }
 
 /* ---- actions ---- */
@@ -12,7 +13,7 @@ const GET_ALL_CATEGORIES = 'GET_ALL_CATEGORIES'
 const GET_ALL_PRODUCTS_IN_CATEGORY = 'GET_ALL_PRODUCTS_IN_CATEGORY'
 
 /* ---- action creators ---- */
-const getSingleProduct = (productById) => ({
+const getSingleProduct = (productById) => ({ // selectedProduct?
   type: GET_SINGLE_PRODUCT,
   selectedProduct: productById
 })
@@ -33,7 +34,7 @@ export const getOneProduct = (productId) =>
     axios.get(`/api/products/${productId}`)
     .then(res => res.data)
     .then(product => dispatch(getSingleProduct(product)))
-    .catch(err => console.error(err))
+    .catch(err => console.error(err)) //add error handling on the front end also? -amkh
   }
 
 export const getCategories = () =>

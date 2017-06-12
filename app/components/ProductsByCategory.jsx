@@ -3,11 +3,13 @@ import {Grid, Col, Thumbnail} from 'react-bootstrap'
 import {Link} from 'react-router'
 
 export default(props) => {
+  // destucture props?
   const products = props.allProducts
   return (
     <div>
       <Grid>
         {
+          // do we still need products ? : null -amkh
           products ? products.map(product => {
             return (
             <Col xs={6} md={4} key={product.id}>

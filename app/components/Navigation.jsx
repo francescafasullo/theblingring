@@ -12,6 +12,7 @@ export default class Navigation extends React.Component {
   }
 
   render() {
+    // destructure :)
     const categories = this.props.allCategories
     const user = this.props.user
     return (
