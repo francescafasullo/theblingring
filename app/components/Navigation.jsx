@@ -20,8 +20,10 @@ export default class Navigation extends React.Component {
           <Navbar.Brand>{'\u2728'} The Bling Ring</Navbar.Brand>
         </Navbar.Header>
         <Nav>
-          {user ? <WhoAmI/> : <Login/>}
           {categories.map(category => <LinkContainer to={`/products/categories/${category.id}`} key={category.id}><NavItem>{category.name}</NavItem></LinkContainer>)}
+        </Nav>
+        <Nav pullRight>
+          {user ? <WhoAmI/> : <Login/>}
         </Nav>
       </Navbar>
     )
