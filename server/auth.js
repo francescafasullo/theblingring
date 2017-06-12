@@ -80,7 +80,7 @@ passport.serializeUser((user, done) => {
 passport.deserializeUser(
   (id, done) => {
     debug('will deserialize user.id=%d', id)
-    User.findById(id)
+    User.findById(id, { include: [Cart] })
       .then(user => {
         if (!user) debug('deserialize retrieved null user for id=%d', id)
         else debug('deserialize did ok user.id=%d', id)
@@ -124,7 +124,8 @@ auth.get('/whoami', (req, res) => res.send(req.user))
 
 // POST requests for local login:
 auth.post('/login/local', passport.authenticate('local'), function(req, res) {
-  res.send(req.user)
+  Cart.findOrCreate({where: {user_id: req.user.id}})
+  .then(() => res.sendStatus(204))
 }
 )
 
@@ -134,20 +135,16 @@ auth.post('/signup/local', (req, res, next) => {
     if (user) {
       return {message: 'User already exists'}
     } else {
-      return User.create({name: req.body.name, email: req.body.email, password: req.body.password})
+      return User.create({name: req.body.name, email: req.body.email, password: req.body.password, cart: {}}, { include: [Cart] })
     }
   })
   .then(user => {
-    return res.send(user)
+    req.login(user, function(err) {
+      if (err) { return next(err) }
+      return res.send(user)
+    })
   })
   .catch(next)
-})
-
-auth.post('/findCart/local', (req, res, next) => {
-  return Cart.findOrCreate({where: {user_id: req.body.userId}})
-  .spread((cart, created) => {
-    res.send(cart)
-  })
 })
 
 // GET requests for OAuth login:
