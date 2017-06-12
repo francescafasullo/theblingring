@@ -202,6 +202,14 @@ const products = seed(Product,
       price: 126.00,
       quantity: 35,
       category_id: categories.necklaces.id
+    },
+    'opalTeardropNecklace': {
+      title: 'Opal Teardrop Necklace',
+      description: 'A shimmering opal on a delicate chain. Opal, also known as The Queen of the Gems, is the birthstone of October. And here\'s a fun fact: In medieval times, opals were thought to make the wearer invisible and were called "Patron of Thieves." Made of solid 14k gold with natrual Australian opal on a 16" chain. Handmade in Brooklyn.',
+      photos: ['https://www.catbirdnyc.com/media/catalog/product/cache/1/image/1000x/602f0fa2c1f0d1ba5e241f914e856ff9/t/e/teardrop_2.jpg', 'https://www.catbirdnyc.com/media/catalog/product/cache/1/image/1000x/602f0fa2c1f0d1ba5e241f914e856ff9/f/i/fireopal3.jpg', 'https://www.catbirdnyc.com/media/catalog/product/cache/1/image/1000x/602f0fa2c1f0d1ba5e241f914e856ff9/t/e/teardrop3.jpg'],
+      price: 65.00,
+      quantity: 20,
+      category_id: categories.necklaces.id
     }
   })
 )
