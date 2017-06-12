@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import ProductDetails from '../components/ProductDetails'
-import { getOneProduct } from '../reducers/products'
 import { addItemToCart } from '../reducers/cart'
 
 const mapStateToProps = state => {
