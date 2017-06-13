@@ -20,6 +20,13 @@
 }
 
 .image-gallery {
-  width: 300px;
-  float: left;
+  width: 400px;
+}
+
+.carousel-control.right {
+  background-image: none;
+}
+
+.carousel-control.left {
+  background-image: none;
 }
