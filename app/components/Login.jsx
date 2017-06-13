@@ -12,7 +12,7 @@ export const Login = ({ login }) => (
         <input name="password" type="password" />
         <input type="submit" value="Login" />
       </form>
-      or <Link to={'/signup'}>Sign Up</Link>
+      or <Link to={'/signup'}>Sign Up</Link> (<Link to={'/api/auth/login/google'}>Sign in with Google</Link>)
     </Nav>
 )
 
