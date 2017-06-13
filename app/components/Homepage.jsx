@@ -1,5 +1,4 @@
 import React from 'react'
-import {getProducts} from '../reducers/products'
 import {Link} from 'react-router'
 
 export default (props) => {
