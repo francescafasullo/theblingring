@@ -1,16 +1,15 @@
 import React from 'react'
+import {getProducts} from '../reducers/products'
 
 export default (props) => {
+  const products = props.allProducts
   return (
     <div className="photoTiles">
-      <img src="/images/ring-vertical.jpg" />
-      <img src="http://via.placeholder.com/440x262" />
-      <img src="/images/rings-stacked-sq.jpg" />
-      <img src="/images/necklace-vertical.jpg" />
-      <img src="/images/ring-horizontal-sm.jpg" />
-      <img src="/images/bracelets-sq.jpg" />
-      <img src="/images/earring-sq.jpg" />
-      <img src="http://via.placeholder.com/440x138" />
+      {
+        products ? products.map(product =>
+          <img src={product.photos[product.photos.length-1]} />
+        ) : null
+      }
     </div>
   )
 }

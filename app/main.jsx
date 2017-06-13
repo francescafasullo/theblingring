@@ -5,14 +5,18 @@ import {render} from 'react-dom'
 import {connect, Provider} from 'react-redux'
 
 import store from './store'
-import Homepage from './components/Homepage'
+import HomepageContainer from './containers/HomepageContainer'
 import NotFound from './components/NotFound'
 import SignUp from './components/SignUp'
 import ProductDetailsContainer from './containers/ProductDetailsContainer'
 import NavigationContainer from './containers/NavigationContainer'
 import ProductsByCategoryContainer from './containers/ProductsByCategoryContainer'
 
-import {getOneProduct, getProductsByCategory} from './reducers/products.jsx'
+import {getOneProduct, getProductsByCategory, getProducts} from './reducers/products.jsx'
+
+export const onHomepageEnter = nextRouterState => {
+  store.dispatch(getProducts())
+}
 
 export const onSingleProductEnter = nextRouterState => {
   const productId = nextRouterState.params.productId
@@ -35,7 +39,7 @@ const RootApp = connect(
       </nav>
       {children}
     </div>)
-})
+  })
 
 render(
   <Provider store={store}>
@@ -43,7 +47,7 @@ render(
       <Route path="/" component={RootApp}>
         <IndexRedirect to="/home" />
         <Route path ="/signup" component={SignUp} />
-        <Route path="/home" component={Homepage} />
+        <Route path="/home" component={HomepageContainer} onEnter={onHomepageEnter} />
         <Route path="/products/:productId" component={ProductDetailsContainer} onEnter={onSingleProductEnter}/>
         <Route path="/products/categories/:categoryId" component={ProductsByCategoryContainer} onEnter={onSingleCategoryEnter} />
       </Route>

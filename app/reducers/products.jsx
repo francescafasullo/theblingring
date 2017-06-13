@@ -3,31 +3,42 @@ import axios from 'axios'
 const initialState = {
   allProducts: [],
   selectedProduct: {},
-  allCategories: []
+  allCategories: [],
+  categoryProducts: []
 }
 
 /* ---- actions ---- */
+const GET_ALL_PRODUCTS = 'GET_ALL_PRODUCTS'
 const GET_SINGLE_PRODUCT = 'GET_SINGLE_PRODUCT'
 const GET_ALL_CATEGORIES = 'GET_ALL_CATEGORIES'
 const GET_ALL_PRODUCTS_IN_CATEGORY = 'GET_ALL_PRODUCTS_IN_CATEGORY'
 
 /* ---- action creators ---- */
-const getSingleProduct = (productById) => ({
-  type: GET_SINGLE_PRODUCT,
-  selectedProduct: productById
+const getAllProducts = (allProducts) => ({
+  type: GET_ALL_PRODUCTS, allProducts
 })
 
-const getAllCategories = (categories) => ({
-  type: GET_ALL_CATEGORIES,
-  allCategories: categories
+const getSingleProduct = (selectedProduct) => ({
+  type: GET_SINGLE_PRODUCT, selectedProduct
 })
 
-const getAllProductsInCategory = (products) => ({
-  type: GET_ALL_PRODUCTS_IN_CATEGORY,
-  categoryProducts: products
+const getAllCategories = (allCategories) => ({
+  type: GET_ALL_CATEGORIES, allCategories
+})
+
+const getAllProductsInCategory = (categoryProducts) => ({
+  type: GET_ALL_PRODUCTS_IN_CATEGORY, categoryProducts
 })
 
 /* ---- dispatchers ---- */
+export const getProducts = () =>
+  dispatch => {
+    axios.get('/api/products')
+    .then(res => res.data)
+    .then(products => dispatch(getAllProducts(products)))
+    .catch(err => console.error(err))
+  }
+
 export const getOneProduct = (productId) =>
   dispatch => {
     axios.get(`/api/products/${productId}`)
@@ -57,6 +68,10 @@ const reducer = (state = initialState, action) => {
   const newState = Object.assign({}, state)
 
   switch (action.type) {
+  case GET_ALL_PRODUCTS:
+    newState.allProducts = action.allProducts
+    break
+
   case GET_SINGLE_PRODUCT:
     newState.selectedProduct = action.selectedProduct
     break
@@ -66,7 +81,7 @@ const reducer = (state = initialState, action) => {
     break
 
   case GET_ALL_PRODUCTS_IN_CATEGORY:
-    newState.allProducts = action.categoryProducts
+    newState.categoryProducts = action.categoryProducts
     break
 
   default:

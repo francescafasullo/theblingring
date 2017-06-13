@@ -4,7 +4,7 @@ import {connect} from 'react-redux'
 import ProductsByCategory from '../components/ProductsByCategory'
 
 const mapStateToProps = state => ({
-  allProducts: state.products.allProducts
+  categoryProducts: state.products.categoryProducts
 })
 
 export default connect(mapStateToProps)(ProductsByCategory)
