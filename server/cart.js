@@ -96,7 +96,7 @@ cart.put('/:userId/:productId', (req, res, next) => {
   })
   .then(item => {
     const newQuant = req.body.quantity
-    if (newQuant === 0) {
+    if (newQuant === '0') {
       return item.destroy({ force: true })
     } else if (newQuant >= 1) {
       return item.update({quantity: newQuant})
