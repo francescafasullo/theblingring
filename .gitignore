@@ -13,4 +13,4 @@ npm-debug.log
 
 # Ignore specific files
 .DS_Store
-theblingring.env.json
+.theblingring.env.json
