@@ -8,7 +8,7 @@
 
 .photoTiles img {
   padding: 0.4%;
-  width: 33.3%;
+  width: 100%;
   transition: .8s opacity;
 }
 
@@ -17,6 +17,10 @@
 }
 .photoTiles:hover img:hover {
   opacity: 1;
+}
+
+.tileLinks {
+  width: 24%;
 }
 
 .image-gallery {

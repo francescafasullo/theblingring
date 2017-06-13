@@ -3,7 +3,7 @@ import {Grid, Col, Thumbnail} from 'react-bootstrap'
 import {Link} from 'react-router'
 
 export default(props) => {
-  const products = props.allProducts
+  const products = props.categoryProducts
   return (
     <div>
       <Grid>

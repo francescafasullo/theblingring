@@ -1,16 +1,17 @@
 import React from 'react'
+import {Link} from 'react-router'
 
 export default (props) => {
+  const products = props.allProducts
   return (
     <div className="photoTiles">
-      <img src="/images/ring-vertical.jpg" />
-      <img src="http://via.placeholder.com/440x262" />
-      <img src="/images/rings-stacked-sq.jpg" />
-      <img src="/images/necklace-vertical.jpg" />
-      <img src="/images/ring-horizontal-sm.jpg" />
-      <img src="/images/bracelets-sq.jpg" />
-      <img src="/images/earring-sq.jpg" />
-      <img src="http://via.placeholder.com/440x138" />
+      {
+        products ? products.map(product =>
+            <Link className="tileLinks" to={`/products/${product.id}`} key={product.id}>
+              <img src={product.photos[product.photos.length-1]} />
+            </Link>
+        ) : null
+      }
     </div>
   )
 }
