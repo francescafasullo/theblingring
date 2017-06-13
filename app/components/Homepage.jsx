@@ -1,5 +1,6 @@
 import React from 'react'
 import {getProducts} from '../reducers/products'
+import {Link} from 'react-router'
 
 export default (props) => {
   const products = props.allProducts
@@ -7,7 +8,9 @@ export default (props) => {
     <div className="photoTiles">
       {
         products ? products.map(product =>
-          <img src={product.photos[product.photos.length-1]} />
+            <Link className="tileLinks" to={`/products/${product.id}`} key={product.id}>
+              <img src={product.photos[product.photos.length-1]} />
+            </Link>
         ) : null
       }
     </div>
