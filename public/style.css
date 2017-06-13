@@ -18,3 +18,15 @@
 .photoTiles:hover img:hover {
   opacity: 1;
 }
+
+.image-gallery {
+  width: 400px;
+}
+
+.carousel-control.right {
+  background-image: none;
+}
+
+.carousel-control.left {
+  background-image: none;
+}
