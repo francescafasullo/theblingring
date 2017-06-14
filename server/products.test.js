@@ -9,3 +9,11 @@ describe('/api/products', () => {
   before('Await database sync', () => db.didSync)
   afterEach('Clear the tables', () => db.truncate({ cascade: true }))
 })
+
+describe('GET /products', () =>
+  it('returns json', () =>
+    request(app)
+      .get(`/api/products`)
+      .expect('Content-Type', 'application/json; charset=utf-8')
+      .expect(200)
+  ))
