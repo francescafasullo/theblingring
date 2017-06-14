@@ -8,7 +8,6 @@ import SignUp from './SignUp'
 
 export default class Navigation extends React.Component {
   componentDidMount() {
-    console.log('ugh props', this.props)
     this.props.getCategories()
   }
 
