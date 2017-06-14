@@ -12,3 +12,4 @@ public/bundle.js.map
 npm-debug.log
 
 .DS_Store
+.theblingring.env.json
