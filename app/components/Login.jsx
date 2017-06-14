@@ -10,7 +10,7 @@ export const Login = ({ login }) => (
       } }>
         <input name="username" />
         <input name="password" type="password" />
-        <input type="submit" value="Login" />
+        <input type="submit" className="btn btn-default btn-md" value="Login" />
       </form>
       or <Link to={'/signup'}>Sign Up</Link>
     </Nav>

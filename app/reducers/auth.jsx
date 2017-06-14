@@ -1,5 +1,6 @@
 import axios from 'axios'
 import { browserHistory } from 'react-router'
+import { totalCartItems } from './cart'
 
 /* ---- actions ---- */
 const AUTHENTICATED = 'AUTHENTICATED'
@@ -37,6 +38,9 @@ export const whoami = () =>
       .then(response => {
         const user = response.data
         dispatch(authenticated(user))
+        if (user) {
+          dispatch(totalCartItems(user.id))
+        }
       })
       .catch(failed => dispatch(authenticated(null)))
 

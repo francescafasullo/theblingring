@@ -8,6 +8,7 @@ import SignUp from './SignUp'
 
 export default class Navigation extends React.Component {
   componentDidMount() {
+    console.log('ugh props', this.props)
     this.props.getCategories()
   }
 
@@ -21,6 +22,11 @@ export default class Navigation extends React.Component {
         </Navbar.Header>
         <Nav>
           {categories.map(category => <LinkContainer to={`/products/categories/${category.id}`} key={category.id}><NavItem>{category.name}</NavItem></LinkContainer>)}
+        </Nav>
+        <Nav pullRight>
+          <button type="button" className="btn btn-default btn-md"><a href="/cart">
+            <span className="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>
+          </a></button>
         </Nav>
         <Nav pullRight>
           {user ? <WhoAmI/> : <Login/>}

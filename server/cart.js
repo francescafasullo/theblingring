@@ -6,13 +6,16 @@ const cart = require('express').Router()
 
 // get a cart
 cart.get('/:userId', (req, res, next) => {
+  console.log('getting a cart backend', req.params.userId)
   Cart.findOne({
     where: {
       user_id: req.params.userId
     },
     include: [{ all: true }]
   })
-  .then(cart => res.send(cart))
+  .then(cart => {
+    console.log('cart cart cart', cart)
+    return res.send(cart)})
   .catch(next)
 })
 
