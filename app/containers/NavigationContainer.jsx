@@ -8,13 +8,11 @@ import Navigation from '../components/Navigation'
 
 const mapStateToProps = state => ({
   allCategories: state.products.allCategories,
-  totalItems: state.totalItems,
   loggedInUser: state.auth
 })
 
 const mapDispatchToProps = dispatch => ({
   getCategories: () => dispatch(getCategories()),
-  totalCartItems: (userId) => dispatch(totalCartItems(userId))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Navigation)
