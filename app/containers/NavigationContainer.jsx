@@ -12,7 +12,7 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  getCategories: () => dispatch(getCategories()),
+  getCategories: () => dispatch(getCategories())
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Navigation)
