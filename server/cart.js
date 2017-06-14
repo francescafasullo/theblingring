@@ -13,8 +13,7 @@ cart.get('/:userId', (req, res, next) => {
     },
     include: [{ all: true }]
   })
-  .then(cart => {
-    return res.send(cart)})
+  .then(cart => res.send(cart))
   .catch(next)
 })
 
