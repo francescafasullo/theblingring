@@ -25,7 +25,6 @@ export const addItemToCart = (user, product) => dispatch => {
 /* ---- reducer ---- */
 const reducer = (state = initialState, action) => {
   const newState = Object.assign({}, state)
-  console.log('actisdhfdjshfon', action)
 
   switch (action.type) {
   case ADD_TO_CART:
