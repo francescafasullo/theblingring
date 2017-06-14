@@ -14,7 +14,6 @@ cart.get('/:userId', (req, res, next) => {
     include: [{ all: true }]
   })
   .then(cart => {
-    console.log('cart cart cart', cart)
     return res.send(cart)})
   .catch(next)
 })
