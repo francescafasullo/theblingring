@@ -17,7 +17,9 @@ export default class Navigation extends React.Component {
     return (
       <Navbar>
         <Navbar.Header>
-          <Navbar.Brand>{'\u2728'} The Bling Ring</Navbar.Brand>
+          <Link to="/">
+            <Navbar.Brand>{'\u2728'} The Bling Ring</Navbar.Brand>
+          </Link>
         </Navbar.Header>
         <Nav>
           {categories.map(category => <LinkContainer to={`/products/categories/${category.id}`} key={category.id}><NavItem>{category.name}</NavItem></LinkContainer>)}
